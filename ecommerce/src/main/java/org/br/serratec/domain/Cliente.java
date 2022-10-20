@@ -52,7 +52,7 @@ public class Cliente {
 	@NotBlank
 	@JoinColumn(name = "id_endereco", nullable = false)
 	@OneToOne(fetch = FetchType.EAGER)
-	private Endereco endereco;
+	//private Endereco endereco;
 
 	public Long getId() {
 		return id;
@@ -102,13 +102,13 @@ public class Cliente {
 		this.dataNascimento = dataNascimento;
 	}
 
-	public Endereco getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
+//	public Endereco getEndereco() {
+//		return endereco;
+//	}
+//
+//	public void setEndereco(Endereco endereco) {
+//		this.endereco = endereco;
+//	}
 	
 	
 }

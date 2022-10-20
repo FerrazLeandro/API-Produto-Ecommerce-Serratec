@@ -1,7 +1,5 @@
 package org.br.serratec.domain;
 
-import java.util.Objects;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "endereco")
@@ -19,38 +16,30 @@ public class Endereco {
 	@Column(name = "id_endereco")
 	private Long id;
 	
-	@NotNull
-	@NotBlank
+	@NotBlank(message = "O CEP não pode ser nulo")
 	@Column(name = "cep", length = 8)
 	private String cep;
-	
-	@NotNull
-	@NotBlank
+
+	@NotBlank(message = "A rua não pode ser nula")
 	@Column(name = "rua", length = 80)
 	private String rua;
 	
-	@NotNull
-	@NotBlank
+	@NotBlank(message = "O bairro não pode ser nulo")
 	@Column(name = "bairro", length = 50)
 	private String bairro;
 	
-	@NotNull
-	@NotBlank
+	@NotBlank(message = "A cidade não pode ser nula")
 	@Column(name = "cidade", length = 80)
 	private String cidade;
 	
-	@NotNull
-	@NotBlank
+	@NotBlank(message = "O número não pode ser nulo")
 	@Column(name = "numero", length = 20)
 	private String numero;
 	
-	@NotNull
-	@NotBlank
 	@Column(name = "complemento", length = 60)
 	private String complemento;
 	
-	@NotNull
-	@NotBlank
+	@NotBlank(message = "A uf não pode ser nulo")
 	@Column(name = "uf", length = 2)
 	private String uf;
 

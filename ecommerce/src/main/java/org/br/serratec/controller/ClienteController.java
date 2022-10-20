@@ -7,7 +7,10 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.br.serratec.domain.Cliente;
+import org.br.serratec.domain.Produto;
+import org.br.serratec.dto.ClienteDto;
 import org.br.serratec.repository.ClienteRepository;
+import org.br.serratec.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,20 +28,19 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 public class ClienteController {
 
 	@Autowired
+	ClienteService clienteService;
+	
+	@Autowired
 	ClienteRepository clienteRepository;
-
+	
 	@GetMapping
-	public ResponseEntity<List<Cliente>> buscar() {
-		return ResponseEntity.ok(clienteRepository.findAll());
+	public ResponseEntity<List<ClienteDto>> buscar() {
+		return ResponseEntity.ok(clienteService.lista());
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Cliente> buscarPorId(@PathVariable Long id) {
-		Optional<Cliente> cliente = clienteRepository.findById(id);
-		if (!cliente.isPresent()) {
-			return ResponseEntity.notFound().build();
-		}
-		return ResponseEntity.ok(cliente.get());
+	public ResponseEntity<Object> buscarPorId(@PathVariable Long id) {
+		return ResponseEntity.ok(clienteService.buscar(id));
 	}
 
 	@PutMapping("/{id}")
@@ -63,10 +65,7 @@ public class ClienteController {
 	}
 
 	@PostMapping
-	public ResponseEntity<Cliente> inserir(@Valid @RequestBody Cliente cliente) {
-		cliente = clienteRepository.save(cliente);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(cliente.getId())
-				.toUri();
-		return ResponseEntity.created(uri).body(cliente);
+	public ResponseEntity<ResponseEntity<Cliente>> inserir(@Valid @RequestBody Cliente cliente) {
+		return ResponseEntity.ok(clienteService.salvar(cliente));
 	}
 }

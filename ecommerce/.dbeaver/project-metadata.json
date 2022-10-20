@@ -1,0 +1,1 @@
+{"resources":{"src/main/resources/db/migration/V2__inserirdados.sql":{"default-datasource":"postgres-jdbc-183f18c3ca3-296a405c686cb002","default-catalog":"postgres","default-schema":"public"}}}
