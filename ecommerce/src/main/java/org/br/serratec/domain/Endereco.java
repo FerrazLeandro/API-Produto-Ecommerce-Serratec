@@ -8,6 +8,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+import org.br.serratec.dto.ClienteInserirDto;
+import org.br.serratec.dto.EnderecoDto;
+
 @Entity
 @Table(name = "endereco")
 public class Endereco {
@@ -20,17 +23,17 @@ public class Endereco {
 	@Column(name = "cep", length = 8)
 	private String cep;
 
-	@NotBlank(message = "A rua não pode ser nula")
-	@Column(name = "rua", length = 80)
-	private String rua;
+	@NotBlank(message = "A logradouro não pode ser nula")
+	@Column(name = "logradouro", length = 80)
+	private String logradouro;
 	
 	@NotBlank(message = "O bairro não pode ser nulo")
 	@Column(name = "bairro", length = 50)
 	private String bairro;
 	
 	@NotBlank(message = "A cidade não pode ser nula")
-	@Column(name = "cidade", length = 80)
-	private String cidade;
+	@Column(name = "localidade", length = 80)
+	private String localidade;
 	
 	@NotBlank(message = "O número não pode ser nulo")
 	@Column(name = "numero", length = 20)
@@ -43,6 +46,19 @@ public class Endereco {
 	@Column(name = "uf", length = 2)
 	private String uf;
 
+	public Endereco(EnderecoDto enderecoDto) {
+		this.logradouro = enderecoDto.getLogradouro();
+		this.cep = enderecoDto.getCep();
+		this.bairro = enderecoDto.getBairro();
+		this.complemento = enderecoDto.getComplemento();
+		this.localidade = enderecoDto.getLocalidade();
+		this.uf = enderecoDto.getUf();
+	}
+	
+
+	public Endereco() {
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -59,12 +75,12 @@ public class Endereco {
 		this.cep = cep;
 	}
 
-	public String getRua() {
-		return rua;
+	public String getLogradouro() {
+		return logradouro;
 	}
 
-	public void setRua(String rua) {
-		this.rua = rua;
+	public void setLogradouro(String logradouro) {
+		this.logradouro = logradouro;
 	}
 
 	public String getBairro() {
@@ -75,12 +91,12 @@ public class Endereco {
 		this.bairro = bairro;
 	}
 
-	public String getCidade() {
-		return cidade;
+	public String getLocalidade() {
+		return localidade;
 	}
 
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
+	public void setLocalidade(String localidade) {
+		this.localidade = localidade;
 	}
 
 	public String getNumero() {

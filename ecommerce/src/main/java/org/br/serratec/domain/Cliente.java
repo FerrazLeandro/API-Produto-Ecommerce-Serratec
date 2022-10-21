@@ -15,6 +15,9 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import org.br.serratec.dto.ClienteInserirDto;
+import org.br.serratec.dto.EnderecoDto;
+
 @Entity
 @Table(name = "cliente")
 public class Cliente {
@@ -48,11 +51,23 @@ public class Cliente {
 	@Column(name = "data_nascimento")
 	private LocalDate dataNascimento;
 	
-	@NotNull
-	@NotBlank
+
 	@JoinColumn(name = "id_endereco", nullable = false)
 	@OneToOne(fetch = FetchType.EAGER)
-	//private Endereco endereco;
+	private Endereco endereco;
+
+	public Cliente(ClienteInserirDto clienteInserir, EnderecoDto enderecoDto) {
+		this.nomeCompleto = clienteInserir.getNomeCompleto();
+		this.cpf = clienteInserir.getCpf();
+		this.dataNascimento = clienteInserir.getDataNascimento();
+		this.email = clienteInserir.getEmail();
+		this.telefone = clienteInserir.getTelefone();
+		this.endereco = new Endereco(enderecoDto);
+		this.endereco.setNumero(clienteInserir.getNumero());
+	}
+	
+	public Cliente() {
+	}
 
 	public Long getId() {
 		return id;
@@ -102,13 +117,13 @@ public class Cliente {
 		this.dataNascimento = dataNascimento;
 	}
 
-//	public Endereco getEndereco() {
-//		return endereco;
-//	}
-//
-//	public void setEndereco(Endereco endereco) {
-//		this.endereco = endereco;
-//	}
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
 	
 	
 }

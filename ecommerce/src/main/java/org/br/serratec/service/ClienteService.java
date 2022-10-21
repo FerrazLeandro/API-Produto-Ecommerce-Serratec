@@ -7,6 +7,8 @@ import java.util.Optional;
 
 import org.br.serratec.domain.Cliente;
 import org.br.serratec.dto.ClienteDto;
+import org.br.serratec.dto.ClienteInserirDto;
+import org.br.serratec.dto.EnderecoDto;
 import org.br.serratec.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,10 @@ public class ClienteService {
 
 	@Autowired
 	ClienteRepository clienteRepository;
+	
+	@Autowired
+	EnderecoService enderecoService;
+	
 	
 	public List<ClienteDto> lista() {
         List<Cliente> clientes = clienteRepository.findAll();
@@ -38,7 +44,11 @@ public class ClienteService {
 		return new ClienteDto(cliente.get());
 	}
 
-	public ResponseEntity<Cliente> salvar(Cliente cliente) {
+	public ResponseEntity<Cliente> salvar(ClienteInserirDto clienteInserir) {
+		EnderecoDto enderecoDto = enderecoService.buscar(clienteInserir.getCep());
+		Cliente cliente = new Cliente(
+					clienteInserir, enderecoDto
+				);
 		cliente = clienteRepository.save(cliente);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(cliente.getId())
 				.toUri();

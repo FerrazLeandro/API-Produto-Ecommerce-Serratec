@@ -7,7 +7,7 @@ INSERT INTO public.produto (nome,descricao,qtd_estoque,data_cadastro,valor_unita
 	 ('Detergente','Detergente Ypê',25,'2022-01-01',5.4,NULL,1);
 
 
-INSERT INTO public.endereco (cep,rua,bairro,cidade,numero,complemento,uf) VALUES
+INSERT INTO public.endereco (cep,logradouro,bairro,localidade,numero,complemento,uf) VALUES
 	 ('11111111','Rua A','Bairro B','Cidade C','1',NULL,'RJ'),
 	 ('22222222','Rua B','Bairro C','Cidade D','2',NULL,'SP');
 

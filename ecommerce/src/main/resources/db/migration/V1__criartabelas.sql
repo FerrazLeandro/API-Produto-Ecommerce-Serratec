@@ -18,9 +18,9 @@ id_categoria int NOT NULL REFERENCES categoria(id_categoria)
 CREATE TABLE endereco (
 id_endereco serial primary key,
 cep varchar(8) NOT NULL, 
-rua varchar(80) NOT NULL,
+logradouro varchar(80) NOT NULL,
 bairro varchar(50) NOT NULL, 
-cidade varchar(80) NOT NULL, 
+localidade varchar(80) NOT NULL, 
 numero varchar(20) NOT NULL,
 complemento varchar(80),
 uf varchar(2) NOT null

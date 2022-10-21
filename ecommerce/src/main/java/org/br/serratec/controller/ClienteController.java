@@ -1,14 +1,13 @@
 package org.br.serratec.controller;
 
-import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
 
 import org.br.serratec.domain.Cliente;
-import org.br.serratec.domain.Produto;
 import org.br.serratec.dto.ClienteDto;
+import org.br.serratec.dto.ClienteInserirDto;
 import org.br.serratec.repository.ClienteRepository;
 import org.br.serratec.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 @RequestMapping("/api/cliente")
@@ -65,7 +63,7 @@ public class ClienteController {
 	}
 
 	@PostMapping
-	public ResponseEntity<ResponseEntity<Cliente>> inserir(@Valid @RequestBody Cliente cliente) {
-		return ResponseEntity.ok(clienteService.salvar(cliente));
+	public ResponseEntity<ResponseEntity<Cliente>> inserir(@Valid @RequestBody ClienteInserirDto clienteInserirDto) {
+		return ResponseEntity.ok(clienteService.salvar(clienteInserirDto));
 	}
 }

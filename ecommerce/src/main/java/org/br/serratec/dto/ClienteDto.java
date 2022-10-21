@@ -22,7 +22,6 @@ public class ClienteDto {
 		this.cpf = cliente.getCpf();
 		this.telefone = cliente.getTelefone();
 		this.dataNascimento = cliente.getDataNascimento();
-		//this.endereco = cliente.getEndereco();
 	}
 	
 	public ClienteDto() {
