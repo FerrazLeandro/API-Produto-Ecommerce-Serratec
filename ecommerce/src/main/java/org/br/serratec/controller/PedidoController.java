@@ -20,6 +20,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 @RestController
 @RequestMapping("/api/pedido")
 public class PedidoController {
@@ -28,11 +32,23 @@ public class PedidoController {
 	PedidoRepository pedidoRepository;
 
 	@GetMapping
+	@ApiOperation(value = "Lista todos os pedidos", notes = "Listagem de pedidos")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Retorna todos os pedidos"),
+	@ApiResponse(code = 401, message = "Erro de autenticação"),
+	@ApiResponse(code = 403, message = "Não há permissão para acessar o recurso"),
+	@ApiResponse(code = 404, message = "Recurso não encontrado"),
+	@ApiResponse(code = 505, message = "Exceção interna da aplicação"), })
 	public ResponseEntity<List<Pedido>> buscar() {
 		return ResponseEntity.ok(pedidoRepository.findAll());
 	}
 
 	@GetMapping("/{id}")
+	@ApiOperation(value = "Retorna um pedido", notes = "Pedido")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Retorna um pedido"),
+	@ApiResponse(code = 401, message = "Erro de autenticação"),
+	@ApiResponse(code = 403, message = "Não há permissão para acessar o recurso"),
+	@ApiResponse(code = 404, message = "Recurso não encontrado"),
+	@ApiResponse(code = 505, message = "Exceção interna da aplicação"), })
 	public ResponseEntity<Pedido> buscarPorId(@PathVariable Long id) {
 		Optional<Pedido> pedido = pedidoRepository.findById(id);
 		if (!pedido.isPresent()) {
@@ -40,8 +56,29 @@ public class PedidoController {
 		}
 		return ResponseEntity.ok(pedido.get());
 	}
+	@PostMapping
+	@ApiOperation(value = "Insere os dados de um pedido", notes = "Inserir pedido")
+	@ApiResponses(value = { @ApiResponse(code = 201, message = "Pedido adicionado"),
+	@ApiResponse(code = 401, message = "Erro de autenticação"),
+	@ApiResponse(code = 403, message = "Não há permissão para acessar o recurso"),
+	@ApiResponse(code = 404, message = "Recurso não encontrado"),
+	@ApiResponse(code = 505, message = "Exceção interna da aplicação"), })
+	public ResponseEntity<Pedido> inserir(@Valid @RequestBody Pedido pedido) {
+		pedido = pedidoRepository.save(pedido);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(pedido.getId())
+				.toUri();
+		return ResponseEntity.created(uri).body(pedido);
+	}
 
 	@PutMapping("/{id}")
+	@ApiOperation(value="Atualiza dados de um pedido", notes="Atualizar pedido")
+	@ApiResponses(value= {
+	@ApiResponse(code=200, message="Pedido atualizado"),
+	@ApiResponse(code=401, message="Erro de autenticação"),
+	@ApiResponse(code=403, message="Não há permissão para acessar o recurso"),
+	@ApiResponse(code=404, message="Recurso não encontrado"),
+	@ApiResponse(code=505, message="Exceção interna da aplicação"),
+	})
 	public ResponseEntity<Pedido> atualizar(@PathVariable Long id, @Valid @RequestBody Pedido pedido) {
 		Optional<Pedido> pedidoBanco = pedidoRepository.findById(id);
 		if (!pedidoBanco.isPresent()) {
@@ -53,6 +90,15 @@ public class PedidoController {
 	}
 
 	@DeleteMapping("/{id}")
+	@ApiOperation(value="Remove um pedido", notes="Remover pedido")
+	@ApiResponses(value= {
+	@ApiResponse(code=200, message="Pedido removido"),
+	@ApiResponse(code=204, message="Sem conteúdo"),
+	@ApiResponse(code=401, message="Erro de autenticação"),
+	@ApiResponse(code=403, message="Não há permissão para acessar o recurso"),
+	@ApiResponse(code=404, message="Recurso não encontrado"),
+	@ApiResponse(code=505, message="Exceção interna da aplicação"),
+	})
 	public ResponseEntity<Void> excluir(@PathVariable Long id) {
 		Optional<Pedido> pedidoBanco = pedidoRepository.findById(id);
 		if (!pedidoBanco.isPresent()) {
@@ -62,12 +108,6 @@ public class PedidoController {
 		return ResponseEntity.noContent().build();
 	}
 
-	@PostMapping
-	public ResponseEntity<Pedido> inserir(@Valid @RequestBody Pedido pedido) {
-		pedido = pedidoRepository.save(pedido);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(pedido.getId())
-				.toUri();
-		return ResponseEntity.created(uri).body(pedido);
-	}
+	
 }
 

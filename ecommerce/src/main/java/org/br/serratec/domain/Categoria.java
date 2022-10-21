@@ -11,20 +11,27 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
 @Table(name = "categoria")
 public class Categoria {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	
 	@Column(name = "id_categoria")
+	@ApiModelProperty(value="Identificador único da categoria")
+
 	private Long id;
 	
 	@NotNull
 	@NotBlank
 	@Column(name = "nome", length = 30, unique = true)
+	@ApiModelProperty(value="Nome da categoria", required = true)
+
 	private String nome;
 	
 	@Column(name = "descricao", length = 200)
+	@ApiModelProperty(value="Descrição da categoria", required = true)
 	private String descricao;
 
 	public Long getId() {

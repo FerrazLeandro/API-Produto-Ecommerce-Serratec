@@ -19,6 +19,8 @@ import javax.validation.constraints.NotNull;
 import org.br.serratec.dto.ClienteInserirDto;
 import org.br.serratec.dto.EnderecoDto;
 
+import io.swagger.annotations.ApiModelProperty;
+
 
 @Entity
 @Table(name = "cliente")
@@ -26,33 +28,42 @@ public class Cliente {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	
 	@Column(name = "id_cliente")
+	@ApiModelProperty(value="Identificador único do cliente")
+
 	private Long id;
 	
 	@NotBlank
 	@Column(name = "nome_completo", length = 50)
+	@ApiModelProperty(value="Nome completo do cliente", required = true)
+
 	private String nomeCompleto;
 	
 	@NotBlank
 	@Email
 	@Column(name = "email", length = 80, unique = true)
+	@ApiModelProperty(value="E-mail do cliente", required = true)
 	private String email;
 	
 	@NotBlank
 	@Column(name = "cpf", length = 11, unique = true)
+	@ApiModelProperty(value="CPF do cliente", required = true)
 	private String cpf;
 	
 	
 	@NotBlank
 	@Column(name = "telefone", length = 40)
+	@ApiModelProperty(value="Telefone do cliente", required = true)
 	private String telefone;
 	
 	
 	@Column(name = "data_nascimento")
+	@ApiModelProperty(value="Data de nascimento do cliente")
 	private LocalDate dataNascimento;
 	
 	@NotNull(message = "O endereco não pode ser nulo")
 	@JoinColumn(name = "id_endereco")
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ApiModelProperty(value="Endereço do cliente", required = true)
 	private Endereco endereco;
 
 	public Cliente(ClienteInserirDto clienteInserir, EnderecoDto enderecoDto) {

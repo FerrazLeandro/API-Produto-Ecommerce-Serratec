@@ -20,6 +20,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 @RestController
 @RequestMapping("/api/categoria")
 public class CategoriaController {
@@ -28,11 +32,23 @@ public class CategoriaController {
 	CategoriaRepository categoriaRepository;
 
 	@GetMapping
+	@ApiOperation(value = "Lista todas as categorias", notes = "Listagem de categorias")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Retorna todas as categorias"),
+	@ApiResponse(code = 401, message = "Erro de autenticação"),
+	@ApiResponse(code = 403, message = "Não há permissão para acessar o recurso"),
+	@ApiResponse(code = 404, message = "Recurso não encontrado"),
+	@ApiResponse(code = 505, message = "Exceção interna da aplicação"), })
 	public ResponseEntity<List<Categoria>> buscar() {
 		return ResponseEntity.ok(categoriaRepository.findAll());
 	}
 
 	@GetMapping("/{id}")
+	@ApiOperation(value = "Retorna uma categoria", notes = "Categoria")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Retorna uma categoria"),
+	@ApiResponse(code = 401, message = "Erro de autenticação"),
+	@ApiResponse(code = 403, message = "Não há permissão para acessar o recurso"),
+	@ApiResponse(code = 404, message = "Recurso não encontrado"),
+	@ApiResponse(code = 505, message = "Exceção interna da aplicação"), })
 	public ResponseEntity<Categoria> buscarPorId(@PathVariable Long id) {
 		Optional<Categoria> categoria = categoriaRepository.findById(id);
 		if (!categoria.isPresent()) {
@@ -41,7 +57,29 @@ public class CategoriaController {
 		return ResponseEntity.ok(categoria.get());
 	}
 
+	@PostMapping
+	@ApiOperation(value = "Insere os dados de uma categoria", notes = "Inserir categoria")
+	@ApiResponses(value = { @ApiResponse(code = 201, message = "Categoria adicionada"),
+	@ApiResponse(code = 401, message = "Erro de autenticação"),
+	@ApiResponse(code = 403, message = "Não há permissão para acessar o recurso"),
+	@ApiResponse(code = 404, message = "Recurso não encontrado"),
+	@ApiResponse(code = 505, message = "Exceção interna da aplicação"), })
+	public ResponseEntity<Categoria> inserir(@Valid @RequestBody Categoria categoria) {
+		categoria = categoriaRepository.save(categoria);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(categoria.getId())
+				.toUri();
+		return ResponseEntity.created(uri).body(categoria);
+	}
+
 	@PutMapping("/{id}")
+	@ApiOperation(value="Atualiza dados de uma categoria", notes="Atualizar Categoria")
+	@ApiResponses(value= {
+	@ApiResponse(code=200, message="Categoria atualizada"),
+	@ApiResponse(code=401, message="Erro de autenticação"),
+	@ApiResponse(code=403, message="Não há permissão para acessar o recurso"),
+	@ApiResponse(code=404, message="Recurso não encontrado"),
+	@ApiResponse(code=505, message="Exceção interna da aplicação"),
+	})
 	public ResponseEntity<Categoria> atualizar(@PathVariable Long id, @Valid @RequestBody Categoria categoria) {
 		Optional<Categoria> categoriaBanco = categoriaRepository.findById(id);
 		if (!categoriaBanco.isPresent()) {
@@ -53,6 +91,15 @@ public class CategoriaController {
 	}
 
 	@DeleteMapping("/{id}")
+	@ApiOperation(value="Remove uma categoria", notes="Remover Categoria")
+	@ApiResponses(value= {
+	@ApiResponse(code=200, message="Categoria removida"),
+	@ApiResponse(code=204, message="Sem conteúdo"),
+	@ApiResponse(code=401, message="Erro de autenticação"),
+	@ApiResponse(code=403, message="Não há permissão para acessar o recurso"),
+	@ApiResponse(code=404, message="Recurso não encontrado"),
+	@ApiResponse(code=505, message="Exceção interna da aplicação"),
+	})
 	public ResponseEntity<Void> excluir(@PathVariable Long id) {
 		Optional<Categoria> categoriaBanco = categoriaRepository.findById(id);
 		if (!categoriaBanco.isPresent()) {
@@ -62,11 +109,4 @@ public class CategoriaController {
 		return ResponseEntity.noContent().build();
 	}
 
-	@PostMapping
-	public ResponseEntity<Categoria> inserir(@Valid @RequestBody Categoria categoria) {
-		categoria = categoriaRepository.save(categoria);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(categoria.getId())
-				.toUri();
-		return ResponseEntity.created(uri).body(categoria);
-	}
 }

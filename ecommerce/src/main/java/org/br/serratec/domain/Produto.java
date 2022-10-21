@@ -15,30 +15,38 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
 @Table(name = "produto")
 public class Produto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	
 	@Column(name = "id_produto")
+	@ApiModelProperty(value="Identificador único do prodto")
 	private Long id;
 	
 	@NotNull
 	@NotBlank
 	@Column(name = "nome", length = 30, unique = true)
+	@ApiModelProperty(value="Nome do produto", required = true)
 	private String nome;
 	
 	@Column(name = "descricao", length = 200)
+	@ApiModelProperty(value="Descrição do produto")
 	private String descricao;
 	
 	@Column(name = "qtd_estoque")
+	@ApiModelProperty(value="Quantidade em estoque do produto")
 	private Integer qtd_estoque;
 	
 	@Column(name = "data_cadastro")
+	@ApiModelProperty(value="Data de cadastro do prodto")
 	private LocalDate data_cadastro;
 	
 	@NotNull
 	@Column(name = "valor_unitario")
+	@ApiModelProperty(value="Valor unitário do produto", required = true)
 	private Double valor_unitario;
 	
 	//@Column(name = "imagem")
@@ -47,6 +55,7 @@ public class Produto {
 	@NotNull(message = "A categoria não pode ser nula")
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_categoria", nullable = false)
+	@ApiModelProperty(value="Identificador único da categoria", required = true)
 	private Categoria categoria;
 
 	public Long getId() {

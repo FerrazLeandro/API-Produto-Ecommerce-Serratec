@@ -14,22 +14,28 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
 @Table(name = "pedido")
 public class Pedido {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	
 	@Column(name = "id_pedido")
+	@ApiModelProperty(value="Identificador único do pedido")
 	private Long id;
 	
 	@NotNull
 	@Column(name = "data_pedido")
+	@ApiModelProperty(value="Data do pedido", required = true)
 	private LocalDate dataPedido;
 	
 	@Column(name = "data_entrega")
+	@ApiModelProperty(value="Data de entrega")
 	private LocalDate dataEntrega;
 	
 	@Column(name = "data_envio")
+	@ApiModelProperty(value="Data do pedido")
 	private LocalDate dataEnvio;
 	
 	@NotBlank
@@ -38,11 +44,13 @@ public class Pedido {
 	
 	@NotNull
 	@Column(name = "valor_total")
+	@ApiModelProperty(value="Valor total do pedido", required = true)
 	private Double valorTotal;
 	
 	@NotNull
 	@JoinColumn(name = "id_cliente", nullable = false)
 	@ManyToOne(fetch = FetchType.EAGER)
+	@ApiModelProperty(value="Identificado único do cliente")
 	private Cliente cliente;
 
 	public Long getId() {
