@@ -1,6 +1,5 @@
 package org.br.serratec.service;
 
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -11,9 +10,7 @@ import org.br.serratec.dto.ClienteInserirDto;
 import org.br.serratec.dto.EnderecoDto;
 import org.br.serratec.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @Service
 public class ClienteService {
@@ -44,15 +41,14 @@ public class ClienteService {
 		return new ClienteDto(cliente.get());
 	}
 
-	public ResponseEntity<Cliente> salvar(ClienteInserirDto clienteInserir) {
+	public Cliente salvar(ClienteInserirDto clienteInserir) {
 		EnderecoDto enderecoDto = enderecoService.buscar(clienteInserir.getCep());
 		Cliente cliente = new Cliente(
 					clienteInserir, enderecoDto
 				);
 		cliente = clienteRepository.save(cliente);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(cliente.getId())
-				.toUri();
-		return ResponseEntity.created(uri).body(cliente);
+		return cliente;
+		
 	}
 	
 	
