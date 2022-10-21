@@ -15,6 +15,17 @@ public class ClienteInserirDto {
 	public ClienteInserirDto() {
 	}
 	
+	
+	
+	@Override
+	public String toString() {
+		return "ClienteInserirDto [id=" + id + ", nomeCompleto=" + nomeCompleto + ", email=" + email + ", cpf=" + cpf
+				+ ", telefone=" + telefone + ", dataNascimento=" + dataNascimento + ", cep=" + cep + ", numero="
+				+ numero + "]";
+	}
+
+
+
 	public void setId(Long id) {
 		this.id = id;
 	}

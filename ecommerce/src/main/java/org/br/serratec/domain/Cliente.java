@@ -2,6 +2,7 @@ package org.br.serratec.domain;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -18,6 +19,7 @@ import javax.validation.constraints.NotNull;
 import org.br.serratec.dto.ClienteInserirDto;
 import org.br.serratec.dto.EnderecoDto;
 
+
 @Entity
 @Table(name = "cliente")
 public class Cliente {
@@ -26,23 +28,20 @@ public class Cliente {
 	@Column(name = "id_cliente")
 	private Long id;
 	
-	@NotNull
 	@NotBlank
 	@Column(name = "nome_completo", length = 50)
 	private String nomeCompleto;
 	
-	@NotNull
 	@NotBlank
 	@Email
 	@Column(name = "email", length = 80, unique = true)
 	private String email;
 	
-	@NotNull
 	@NotBlank
 	@Column(name = "cpf", length = 11, unique = true)
 	private String cpf;
 	
-	@NotNull
+	
 	@NotBlank
 	@Column(name = "telefone", length = 40)
 	private String telefone;
@@ -51,9 +50,9 @@ public class Cliente {
 	@Column(name = "data_nascimento")
 	private LocalDate dataNascimento;
 	
-
-	@JoinColumn(name = "id_endereco", nullable = false)
-	@OneToOne(fetch = FetchType.EAGER)
+	@NotNull(message = "O endereco não pode ser nulo")
+	@JoinColumn(name = "id_endereco")
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Endereco endereco;
 
 	public Cliente(ClienteInserirDto clienteInserir, EnderecoDto enderecoDto) {

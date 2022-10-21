@@ -8,7 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
-import org.br.serratec.dto.ClienteInserirDto;
 import org.br.serratec.dto.EnderecoDto;
 
 @Entity
@@ -54,7 +53,7 @@ public class Endereco {
 		this.localidade = enderecoDto.getLocalidade();
 		this.uf = enderecoDto.getUf();
 	}
-	
+
 
 	public Endereco() {
 	}

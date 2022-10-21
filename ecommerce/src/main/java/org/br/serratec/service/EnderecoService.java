@@ -15,21 +15,16 @@ public class EnderecoService {
 	private EnderecoRepository enderecoRepository;
 
 	public EnderecoDto buscar(String cep) {
-		Optional<Endereco> endereco = Optional.ofNullable(enderecoRepository.findByCep(cep));
-		if (endereco.isPresent()) {
-			return new EnderecoDto(endereco.get());
-		} else {
 			RestTemplate restTemplate = new RestTemplate();
 			String uri = "http://viacep.com.br/ws/" + cep + "/json";
 			Optional<Endereco> enderecoViaCep = Optional.ofNullable(restTemplate.getForObject(uri, Endereco.class));
 			if (enderecoViaCep.get().getCep() != null) {
 				String cepSemTraco = enderecoViaCep.get().getCep().replaceAll("-", "");
 				enderecoViaCep.get().setCep(cepSemTraco);
-				return inserir(enderecoViaCep.get());
+				return new EnderecoDto(enderecoViaCep.get());
 			} else {
 				return null;
 			}
-		}
 	}
 
 	private EnderecoDto inserir(Endereco endereco) {
