@@ -22,11 +22,11 @@ public class ClienteService {
 	EnderecoService enderecoService;
 	
 	
-	public List<Cliente> lista() {
+	public List<Cliente> buscar() {
         return clienteRepository.findAll();
     }
 
-    public Cliente buscar(Long id) {
+    public Cliente buscarPorId(Long id) {
         Optional<Cliente> cliente = clienteRepository.findById(id);
         if (cliente.isPresent()) {
             return cliente.get();

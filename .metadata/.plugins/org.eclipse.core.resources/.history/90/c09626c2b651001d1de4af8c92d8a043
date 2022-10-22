@@ -22,7 +22,7 @@ public class ClienteService {
 	EnderecoService enderecoService;
 	
 	
-	public List<Cliente> lista() {
+	public List<Cliente> buscar() {
         return clienteRepository.findAll();
     }
 

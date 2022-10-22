@@ -22,8 +22,13 @@ public class ClienteService {
 	EnderecoService enderecoService;
 	
 	
-	public List<Cliente> lista() {
+	public List<Cliente> listar() {
         return clienteRepository.findAll();
+    }
+
+    public List<ClienteDto> listar() {
+        List<Cliente> clientes = clienteRepository.findAll();
+        return ClienteDto.convert(clientes);
     }
 
     public Cliente buscar(Long id) {

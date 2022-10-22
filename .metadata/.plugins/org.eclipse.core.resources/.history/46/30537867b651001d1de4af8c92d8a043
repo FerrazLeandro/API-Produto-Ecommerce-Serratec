@@ -22,11 +22,16 @@ public class ClienteService {
 	EnderecoService enderecoService;
 	
 	
-	public List<Cliente> lista() {
+	public List<Cliente> listar() {
         return clienteRepository.findAll();
     }
 
-    public Cliente buscar(Long id) {
+    public List<ClienteDto> findAll() {
+        List<Cliente> clientes = clienteRepository.findAll();
+        return ClienteDto.convert(clientes);
+    }
+
+    public Cliente buscarCliente(Long id) {
         Optional<Cliente> cliente = clienteRepository.findById(id);
         if (cliente.isPresent()) {
             return cliente.get();

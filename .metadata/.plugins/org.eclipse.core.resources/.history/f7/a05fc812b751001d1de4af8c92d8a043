@@ -46,6 +46,9 @@ public class ClienteController {
 	@ApiResponse(code=404, message="Recurso não encontrado"),
 	@ApiResponse(code=505, message="Exceção interna da aplicação"),
 	})
+	
+	
+	@GetMapping
     public ResponseEntity<List<Cliente>> buscar() {
         List<Cliente> cliente = clienteService.lista();
         return ResponseEntity.ok(cliente);
@@ -60,15 +63,9 @@ public class ClienteController {
 	@ApiResponse(code=404, message="Recurso não encontrado"),
 	@ApiResponse(code=505, message="Exceção interna da aplicação"),
 	})
-    public ResponseEntity<Cliente> buscarCliente(@PathVariable Long id) {
-        Cliente cliente = clienteService.buscar(id);
-        if (null != cliente) {
-            return ResponseEntity.ok(cliente);
-        }
-        return ResponseEntity.notFound().build();
-    }
-	
-	
+	public ResponseEntity<ClienteDto> buscarPorId(@PathVariable Long id) {
+		return ResponseEntity.ok(clienteService.buscar(id));
+	}
 	@PostMapping
 	@ApiOperation(value="Insere os dados de um cliente", notes="Inserir Cliente")
 	@ApiResponses(value= {

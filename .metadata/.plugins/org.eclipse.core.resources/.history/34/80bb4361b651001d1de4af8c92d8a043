@@ -22,17 +22,24 @@ public class ClienteService {
 	EnderecoService enderecoService;
 	
 	
-	public List<Cliente> lista() {
-        return clienteRepository.findAll();
+	public List<ClienteDto> lista() {
+        List<Cliente> clientes = clienteRepository.findAll();
+        List<ClienteDto> clientesDto = new ArrayList<>();
+        for (int i = 0; i < clientes.size(); i++) {
+            Cliente cliente = clientes.get(i);
+            clientesDto.add(new ClienteDto(cliente));
+
+        }
+        return clientesDto;
     }
 
-    public Cliente buscar(Long id) {
-        Optional<Cliente> cliente = clienteRepository.findById(id);
-        if (cliente.isPresent()) {
-            return cliente.get();
-        }
-        return null;
-    }
+	public ClienteDto buscar(Long id) {
+		Optional<Cliente> cliente = clienteRepository.findById(id);
+		if (!cliente.isPresent()) {
+			return null;
+		}
+		return new ClienteDto(cliente.get());
+	}
 
 	public Cliente salvar(ClienteInserirDto clienteInserir) {
 		EnderecoDto enderecoDto = enderecoService.buscar(clienteInserir.getCep());

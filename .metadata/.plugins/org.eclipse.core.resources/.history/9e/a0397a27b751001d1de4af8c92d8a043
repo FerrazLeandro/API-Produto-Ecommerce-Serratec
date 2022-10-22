@@ -60,8 +60,13 @@ public class ClienteController {
 	@ApiResponse(code=404, message="Recurso não encontrado"),
 	@ApiResponse(code=505, message="Exceção interna da aplicação"),
 	})
+	public ResponseEntity<ClienteDto> buscarPorId(@PathVariable Long id) {
+		return ResponseEntity.ok(clienteService.buscar(id));
+	}
+	
+	@GetMapping("/{id}")
     public ResponseEntity<Cliente> buscarCliente(@PathVariable Long id) {
-        Cliente cliente = clienteService.buscar(id);
+        Cliente cliente = clienteService.buscarCliente(id);
         if (null != cliente) {
             return ResponseEntity.ok(cliente);
         }
