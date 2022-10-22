@@ -6,8 +6,11 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import org.br.serratec.config.MailConfig;
 import org.br.serratec.domain.Pedido;
+import org.br.serratec.dto.PedidoInserirDto;
 import org.br.serratec.repository.PedidoRepository;
+import org.br.serratec.service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,6 +33,12 @@ public class PedidoController {
 
 	@Autowired
 	PedidoRepository pedidoRepository;
+	
+	@Autowired
+	private MailConfig mailConfig;
+	
+	@Autowired
+	PedidoService pedidoService;
 
 	@GetMapping
 	@ApiOperation(value = "Lista todos os pedidos", notes = "Listagem de pedidos")
@@ -63,10 +72,20 @@ public class PedidoController {
 	@ApiResponse(code = 403, message = "Não há permissão para acessar o recurso"),
 	@ApiResponse(code = 404, message = "Recurso não encontrado"),
 	@ApiResponse(code = 505, message = "Exceção interna da aplicação"), })
-	public ResponseEntity<Pedido> inserir(@Valid @RequestBody Pedido pedido) {
-		pedido = pedidoRepository.save(pedido);
+	public ResponseEntity<Pedido> inserir(@Valid @RequestBody PedidoInserirDto pedidoInserirDto) {
+		Pedido pedido = pedidoService.salvar(pedidoInserirDto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(pedido.getId())
 				.toUri();
+		
+		// Email
+		mailConfig.sendMail("leandro_ferraz@outlook.com", 
+				"Pedido cadastrado com sucesso! \n\n", 
+				"Pedido: " + pedido.getId() + "\n" +
+				"Data do pedido: "  + pedido.getDataPedido() + "\n" +
+				"Valor total: " + pedido.getValorTotal() + "\n" +
+				"Itens: " + "\n");
+				// TODO Complementar o relatório de pedido
+				
 		return ResponseEntity.created(uri).body(pedido);
 	}
 

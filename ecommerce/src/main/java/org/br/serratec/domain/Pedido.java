@@ -1,6 +1,7 @@
 package org.br.serratec.domain;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
+import org.br.serratec.dto.PedidoInserirDto;
 
 import io.swagger.annotations.ApiModelProperty;
 
@@ -52,6 +55,7 @@ public class Pedido {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@ApiModelProperty(value="Identificado único do cliente")
 	private Cliente cliente;
+
 
 	public Long getId() {
 		return id;

@@ -1,0 +1,5 @@
+INSERT INTO public.categoria (nome,descricao) VALUES
+	 ('Alimentos','Comidas e bebidas'),
+	 ('Limpeza','Produtos de limpeza em geral');
+
+	

@@ -1,0 +1,62 @@
+package org.br.serratec.controller;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.br.serratec.domain.Categoria;
+import org.br.serratec.repository.CategoriaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/api/categoria")
+public class CategoriaController {
+	
+	@Autowired
+	CategoriaRepository categoriaRepository;
+	
+	@GetMapping
+    public ResponseEntity<List<Categoria>> buscar() {
+        return ResponseEntity.ok(categoriaRepository.findAll());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Categoria> buscarPorId(@PathVariable Long id) {
+        Optional<Categoria> categoria = categoriaRepository.findById(id);
+        if (!categoria.isPresent()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(categoria.get());
+    }
+    
+    @PutMapping("/{id}")
+    public ResponseEntity<Associado> atualizar(@PathVariable Long id, @Valid @RequestBody Associado associado) {
+        Optional<Associado> associadoBanco = associadoRepository.findById(id);
+        if (!associadoBanco.isPresent()) {
+            return ResponseEntity.notFound().build();
+        }
+        associado.setId(id);
+        associado = associadoRepository.save(associado);
+        return ResponseEntity.ok(associado);
+    }
+@DeleteMapping("/{id}")
+    public ResponseEntity<Void> excluir(@PathVariable Long id) {
+        Optional<Associado> associadoBanco = associadoRepository.findById(id);
+        if (!associadoBanco.isPresent()) {
+            return ResponseEntity.notFound().build();
+        }
+        associadoRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+@PostMapping
+    public ResponseEntity<Associado> inserir(@Valid @RequestBody Associado associado) {
+        associado = associadoRepository.save(associado);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(associado.getId())
+                .toUri();
+        return ResponseEntity.created(uri).body(associado);
+    }
+}

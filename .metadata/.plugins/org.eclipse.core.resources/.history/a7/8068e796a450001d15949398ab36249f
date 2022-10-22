@@ -1,0 +1,9 @@
+INSERT INTO public.categoria (nome,descricao) VALUES
+	 ('Alimentos','Comidas e bebidas'),
+	 ('Limpeza','Produtos de limpeza em geral');
+
+INSERT INTO public.cliente (nome_completo,email,cpf,telefone,data_nascimento,id_endereco) VALUES
+	 ('Joao Silva','joao@test.com','11111111111','21999999999','2000-01-01',1),
+	 ('Maria Silva','maria@test.com','22222222222','21000000000','1900-01-01',2);
+
+	

@@ -1,0 +1,19 @@
+package org.br.serratec.service;
+
+import org.br.serratec.domain.Cliente;
+import org.br.serratec.dto.ClienteInserirDto;
+import org.br.serratec.dto.EnderecoDto;
+import org.springframework.stereotype.Service;
+
+@Service
+public class PedidoService {
+	public Cliente salvar(ClienteInserirDto clienteInserir) {
+		EnderecoDto enderecoDto = enderecoService.buscar(clienteInserir.getCep());
+		Cliente cliente = new Cliente(
+					clienteInserir, enderecoDto
+				);
+		cliente = clienteRepository.save(cliente);
+		return cliente;
+		
+	}
+}

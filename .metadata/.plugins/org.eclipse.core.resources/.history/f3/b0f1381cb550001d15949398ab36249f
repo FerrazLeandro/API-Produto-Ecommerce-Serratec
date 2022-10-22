@@ -1,0 +1,16 @@
+package org.br.serratec.dto;
+
+import java.time.LocalDate;
+
+public class ClienteInserirDto {
+	private Long id;
+	private String nomeCompleto;
+	private String email;
+	private String cpf;
+	private String telefone;
+	private LocalDate dataNascimento;
+	private String cep;
+	private String numero;
+	
+	
+}

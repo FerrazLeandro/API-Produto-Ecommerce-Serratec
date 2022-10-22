@@ -1,0 +1,47 @@
+package org.br.serratec.domain;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+@Entity
+@Table(name = "item_pedido")
+public class ItemPedido {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)	
+	@Column(name = "id_item_pedido")
+	private Long id;
+	
+	@NotNull
+	@Column(name = "quantidade")
+	private Integer quantidade;
+	
+	@NotNull
+	@Column(name = "preco_venda")
+	private Double precoVenda;
+	
+	@NotNull
+	@Column(name = "percentual_desconto")
+	private Double percentualDesconto;
+	
+	@NotNull
+	@Column(name = "valor_bruto")
+	private Double valorBruto;
+	
+	@NotNull
+	@Column(name = "valor_liquido")
+	private Double valorliquido;
+	
+	@NotNull
+	@JoinColumn(name = "id_produto")
+	@ManyToOne(fetch = FetchType.EAGER)
+	private Produto produto;
+	private Pedido pedido;
+}

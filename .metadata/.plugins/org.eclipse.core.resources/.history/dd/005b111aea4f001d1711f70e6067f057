@@ -1,0 +1,7 @@
+package org.br.serratec.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface EnderecoRepository extends JpaRepository<T, ID> {
+
+}

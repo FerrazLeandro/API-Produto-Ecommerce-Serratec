@@ -1,0 +1,10 @@
+package org.br.serratec.domain;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Item")
+public class ItemPedido {
+
+}

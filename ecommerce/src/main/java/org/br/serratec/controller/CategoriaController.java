@@ -6,7 +6,9 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import org.br.serratec.config.MailConfig;
 import org.br.serratec.domain.Categoria;
+import org.br.serratec.domain.Cliente;
 import org.br.serratec.repository.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +32,9 @@ public class CategoriaController {
 
 	@Autowired
 	CategoriaRepository categoriaRepository;
+	
+	@Autowired
+	private MailConfig mailConfig;
 
 	@GetMapping
 	@ApiOperation(value = "Lista todas as categorias", notes = "Listagem de categorias")
@@ -68,6 +73,10 @@ public class CategoriaController {
 		categoria = categoriaRepository.save(categoria);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(categoria.getId())
 				.toUri();
+		//TODO Colocar o email do usuário
+		mailConfig.sendMail("leandro_ferraz@outlook.com", 
+				"Categoria cadastrada com sucesso", 
+				"Categoria " + categoria.getNome() + " cadastrado com a descrição: " + categoria.getDescricao());
 		return ResponseEntity.created(uri).body(categoria);
 	}
 

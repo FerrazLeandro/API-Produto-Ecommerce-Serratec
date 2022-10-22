@@ -1,0 +1,24 @@
+package org.br.serratec.service;
+
+import org.br.serratec.domain.Pedido;
+import org.br.serratec.dto.PedidoInserirDto;
+import org.br.serratec.repository.PedidoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class PedidoService {
+	
+	@Autowired
+	PedidoRepository pedidoRepository;
+	
+	public Pedido salvar(PedidoInserirDto pedidoInserir) {
+		PedidoDto pedidoDto = pedidoRepository.findById();
+		Pedido pedido = new Pedido(
+				pedidoInserir, pedidoDto
+			);
+		pedido = pedidoRepository.save(pedido);
+	return pedido;
+		
+	}
+}

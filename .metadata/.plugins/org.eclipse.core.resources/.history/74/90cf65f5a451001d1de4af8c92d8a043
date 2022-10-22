@@ -1,0 +1,18 @@
+package org.br.serratec.service;
+
+import org.br.serratec.domain.Pedido;
+import org.br.serratec.dto.PedidoInserirDto;
+import org.br.serratec.dto.EnderecoDto;
+import org.springframework.stereotype.Service;
+
+@Service
+public class PedidoService {
+	public Pedido salvar(PedidoInserirDto pedidoInserir) {
+		Pedido pedido = new Pedido(
+					pedidoInserir, Pedido
+				);
+		pedido = pedidoRepository.save(pedido);
+		return pedido;
+		
+	}
+}

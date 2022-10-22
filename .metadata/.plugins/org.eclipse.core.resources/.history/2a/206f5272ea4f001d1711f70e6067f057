@@ -1,0 +1,5 @@
+package org.br.serratec.controller;
+
+public class EnderecoController {
+
+}
