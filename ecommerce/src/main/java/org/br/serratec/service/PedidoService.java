@@ -1,5 +1,6 @@
 package org.br.serratec.service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -30,7 +31,7 @@ public class PedidoService {
 	
 	
 	
-	public Pedido salvar(PedidoInserirDto pedidoInserirDto) {
+	public Pedido salvar(PedidoInserirDto pedidoInserirDto) throws IOException {
 		Pedido pedido = new Pedido();
 		pedido.setDataPedido(pedidoInserirDto.getDataPedido());
 		pedido.setDataEntrega(pedidoInserirDto.getDataEntrega());

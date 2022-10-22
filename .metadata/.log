@@ -4933,3 +4933,15 @@ Java Model Exception: Error in Java Model (code 969): buscarPorId(Long) [in Clie
 	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:165)
 !SUBENTRY 1 org.eclipse.jdt.core 4 969 2022-10-22 00:08:39.927
 !MESSAGE buscarPorId(Long) [in ClienteService [in [Working copy] ClienteService.java [in org.br.serratec.service [in src/main/java [in ecommerce]]]]] does not exist
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-10-22 00:44:20.520
+!MESSAGE Entering DelegatingStreamConnectionProvider()
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-10-22 00:44:20.521
+!MESSAGE DelegatingStreamConnectionProvider classloader = org.eclipse.osgi.internal.loader.EquinoxClassLoader@69546eec[org.springframework.tooling.boot.ls:1.38.0.202208110704(id=567)]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-10-22 00:44:20.521
+!MESSAGE SpringBootLanguageServer exists!
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-10-22 00:44:22.705
+!MESSAGE Boot LS startup time from start to initialized: 2184ms
