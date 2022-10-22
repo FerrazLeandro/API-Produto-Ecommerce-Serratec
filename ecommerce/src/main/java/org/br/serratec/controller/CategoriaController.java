@@ -8,7 +8,6 @@ import javax.validation.Valid;
 
 import org.br.serratec.config.MailConfig;
 import org.br.serratec.domain.Categoria;
-import org.br.serratec.domain.Cliente;
 import org.br.serratec.repository.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -75,8 +74,8 @@ public class CategoriaController {
 				.toUri();
 		//TODO Colocar o email do usuário
 		mailConfig.sendMail("leandro_ferraz@outlook.com", 
-				"Categoria cadastrada com sucesso", 
-				"Categoria " + categoria.getNome() + " cadastrado com a descrição: " + categoria.getDescricao());
+				"Ecommerce - Categoria cadastrada com sucesso!", 
+				categoria.toString());
 		return ResponseEntity.created(uri).body(categoria);
 	}
 

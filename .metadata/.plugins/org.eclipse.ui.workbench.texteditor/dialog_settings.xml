@@ -6,8 +6,11 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="Logradouro"/>
+		<item key="selection" value="PedidoInserirDto"/>
 		<list key="findhistory">
+			<item value="ClienteDto"/>
+			<item value="cliente"/>
+			<item value="Cliente"/>
 			<item value="Rua"/>
 			<item value="rua"/>
 			<item value="Endereco"/>
@@ -20,26 +23,23 @@
 			<item value="CategoriaRepository"/>
 			<item value="CategoriaController"/>
 			<item value="categotia"/>
-			<item value="Categotia"/>
-			<item value="associado"/>
-			<item value="Associado"/>
 		</list>
 		<list key="replacehistory">
+			<item value="PedidoInserirDto"/>
+			<item value="pedido"/>
+			<item value="Pedido"/>
 			<item value="Logradouro"/>
 			<item value="logradouro"/>
 			<item value="ItemPedido"/>
 			<item value="itemPedido"/>
 			<item value="itemPedidoRepository"/>
 			<item value="ItemPedidoRepository"/>
-			<item value="Pedido"/>
-			<item value="pedido"/>
 			<item value="pedidoRepository"/>
 			<item value="PedidoRepository"/>
 			<item value="cliente"/>
 			<item value="Cliente"/>
 			<item value="enderecoRepository"/>
 			<item value="EnderecoRepository"/>
-			<item value="categoriaRepository"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

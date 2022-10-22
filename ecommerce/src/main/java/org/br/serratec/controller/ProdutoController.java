@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import org.br.serratec.config.MailConfig;
 import org.br.serratec.domain.Produto;
 import org.br.serratec.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,9 @@ public class ProdutoController {
 
 	@Autowired
 	ProdutoRepository produtoRepository;
+	
+	@Autowired
+	private MailConfig mailConfig;
 
 	@GetMapping
 	@ApiOperation(value = "Lista todos os produtos", notes = "Listagem de produtos")
@@ -67,6 +71,10 @@ public class ProdutoController {
 		produto = produtoRepository.save(produto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(produto.getId())
 				.toUri();
+		//TODO Colocar o email do usuário
+				mailConfig.sendMail("leandro_ferraz@outlook.com", 
+						"Ecommerce - Produto cadastrado com sucesso!", 
+						produto.toString());
 		return ResponseEntity.created(uri).body(produto);
 	}
 

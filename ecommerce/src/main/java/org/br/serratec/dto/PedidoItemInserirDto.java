@@ -1,10 +1,18 @@
 package org.br.serratec.dto;
 
+import javax.validation.constraints.NotNull;
+
 import org.br.serratec.domain.Produto;
 
 public class PedidoItemInserirDto {
+	
+	@NotNull(message= "A quantidade não pode ser nula")
 	private Integer quantidade;
+	
+	@NotNull(message= "A percentual não pode ser nula")
 	private Double percentualDesconto;
+	
+	@NotNull(message= "O Produto não pode ser nula")
 	private Produto produto;
 	
 	

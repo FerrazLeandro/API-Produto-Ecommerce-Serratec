@@ -3,6 +3,8 @@ package org.br.serratec.dto;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -12,24 +14,32 @@ import io.swagger.annotations.ApiModelProperty;
 
 public class PedidoInserirDto {
 	
-	@NotNull
+	@NotBlank(message= "A data do pedido não pode ser em branco")
+	@NotNull(message= "A data do pedido não pode ser nula")
 	@ApiModelProperty(value="Data do pedido", required = true)
 	private LocalDate dataPedido;
 	
+	@NotBlank(message= "A data da entrega não pode ser em branco")
+	@NotNull(message= "A data da entrega não pode ser nula")
 	@ApiModelProperty(value="Data de entrega")
 	private LocalDate dataEntrega;
 	
+	@NotBlank(message= "A data do p não pode ser em branco")
+	@NotNull(message= "A data do envio não pode ser nula")
 	@ApiModelProperty(value="Data do pedido")
 	private LocalDate dataEnvio;
 	
-	@NotBlank
+	@NotBlank(message= "O status não pode ser em branco")
+	@NotNull(message= "O status pedido não pode ser nula")
 	private String status;
 	
-	@NotNull
+	@NotNull(message= "O cliente não pode ser nulo")
 	@ApiModelProperty(value="Identificado único do cliente")
+	@ManyToOne
+	@JoinColumn(name = "id_cliente")
 	private Cliente cliente;
 	
-	@NotNull
+	@NotNull(message= "O item pedido não pode ser nulo")
 	private List<PedidoItemInserirDto> pedidoItemInserirDto;
 	
 	public PedidoInserirDto() {

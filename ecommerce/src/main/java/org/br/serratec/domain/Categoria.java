@@ -17,22 +17,25 @@ import io.swagger.annotations.ApiModelProperty;
 @Table(name = "categoria")
 public class Categoria {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_categoria")
-	@ApiModelProperty(value="Identificador único da categoria")
-
+	@ApiModelProperty(value = "Identificador único da categoria")
 	private Long id;
-	
-	@NotNull
-	@NotBlank
-	@Column(name = "nome", length = 30, unique = true)
-	@ApiModelProperty(value="Nome da categoria", required = true)
 
+	@NotNull(message = "Not null")
+	@NotBlank(message = "Not blank")
+	@Column(name = "nome", length = 30, unique = true)
+	@ApiModelProperty(value = "Nome da categoria", required = true)
 	private String nome;
-	
+
 	@Column(name = "descricao", length = 200)
-	@ApiModelProperty(value="Descrição da categoria", required = true)
+	@ApiModelProperty(value = "Descrição da categoria", required = true)
 	private String descricao;
+
+	@Override
+	public String toString() {
+		return "Categoria: " + nome + "\nDescrição: " + descricao;
+	}
 
 	public Long getId() {
 		return id;
@@ -46,7 +49,6 @@ public class Categoria {
 		return descricao;
 	}
 
-	
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -76,7 +78,4 @@ public class Categoria {
 		return Objects.equals(id, other.id) && Objects.equals(nome, other.nome);
 	}
 
-	
-	
-	
 }

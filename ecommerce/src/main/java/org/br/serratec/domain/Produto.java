@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
@@ -32,25 +33,29 @@ public class Produto {
 	@ApiModelProperty(value="Nome do produto", required = true)
 	private String nome;
 	
+	@NotNull
 	@Column(name = "descricao", length = 200)
 	@ApiModelProperty(value="Descrição do produto")
 	private String descricao;
 	
 	@Column(name = "qtd_estoque")
 	@ApiModelProperty(value="Quantidade em estoque do produto")
-	private Integer qtd_estoque;
+	private Integer qtdEstoque;
 	
 	@Column(name = "data_cadastro")
 	@ApiModelProperty(value="Data de cadastro do prodto")
-	private LocalDate data_cadastro;
+	private LocalDate dataCadastro;
 	
 	@NotNull
 	@Column(name = "valor_unitario")
 	@ApiModelProperty(value="Valor unitário do produto", required = true)
-	private Double valor_unitario;
+	private Double valorUnitario;
 	
-	//@Column(name = "imagem")
-	//private Image imagem;
+	@Column(name = "imagem")
+	@Lob
+	private byte[] dados;
+	
+	private String url;
 	
 	@NotNull(message = "A categoria não pode ser nula")
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -82,37 +87,49 @@ public class Produto {
 		this.descricao = descricao;
 	}
 
-	public Integer getQtd_estoque() {
-		return qtd_estoque;
+	public Integer getQtdEstoque() {
+		return qtdEstoque;
 	}
 
-	public void setQtd_estoque(Integer qtd_estoque) {
-		this.qtd_estoque = qtd_estoque;
+	public void setQtdEstoque(Integer qtdEstoque) {
+		this.qtdEstoque = qtdEstoque;
 	}
 
-	public LocalDate getData_cadastro() {
-		return data_cadastro;
+	public LocalDate getDataCadastro() {
+		return dataCadastro;
 	}
 
-	public void setData_cadastro(LocalDate data_cadastro) {
-		this.data_cadastro = data_cadastro;
+	public void setDataCadastro(LocalDate dataCadastro) {
+		this.dataCadastro = dataCadastro;
 	}
 
-	public Double getValor_unitario() {
-		return valor_unitario;
+	public Double getValorUnitario() {
+		return valorUnitario;
 	}
 
-	public void setValor_unitario(Double valor_unitario) {
-		this.valor_unitario = valor_unitario;
+	public void setValorUnitario(Double valorUnitario) {
+		this.valorUnitario = valorUnitario;
 	}
 
-//	public Image getImagem() {
-//		return imagem;
-//	}
-//
-//	public void setImagem(Image imagem) {
-//		this.imagem = imagem;
-//	}
+	
+
+	public byte[] getDados() {
+		return dados;
+	}
+
+	public void setDados(byte[] dados) {
+		this.dados = dados;
+	}
+	
+	
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
 
 	public Categoria getCategoria() {
 		return categoria;
