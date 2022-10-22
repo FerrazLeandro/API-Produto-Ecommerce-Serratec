@@ -1,4 +1,4 @@
-package org.br.serratec.domain;
+package org.br.serratec.dto;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -15,45 +15,49 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import org.br.serratec.domain.Categoria;
+
 import io.swagger.annotations.ApiModelProperty;
 
 @Entity
 @Table(name = "produto")
-public class Produto {
+public class ProdutoDto {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_produto")
-	@ApiModelProperty(value="Identificador único do prodto")
+	@ApiModelProperty(value = "Identificador único do prodto")
 	private Long id;
-	
+
 	@NotNull
 	@NotBlank
 	@Column(name = "nome", length = 30, unique = true)
-	@ApiModelProperty(value="Nome do produto", required = true)
+	@ApiModelProperty(value = "Nome do produto", required = true)
 	private String nome;
-	
+
 	@NotNull
 	@Column(name = "descricao", length = 200)
-	@ApiModelProperty(value="Descrição do produto")
+	@ApiModelProperty(value = "Descrição do produto")
 	private String descricao;
-	
+
 	@Column(name = "qtd_estoque")
-	@ApiModelProperty(value="Quantidade em estoque do produto")
+	@ApiModelProperty(value = "Quantidade em estoque do produto")
 	private Integer qtdEstoque;
-	
+
 	@Column(name = "data_cadastro")
-	@ApiModelProperty(value="Data de cadastro do prodto")
+	@ApiModelProperty(value = "Data de cadastro do prodto")
 	private LocalDate dataCadastro;
-	
+
 	@NotNull
 	@Column(name = "valor_unitario")
-	@ApiModelProperty(value="Valor unitário do produto", required = true)
+	@ApiModelProperty(value = "Valor unitário do produto", required = true)
 	private Double valorUnitario;
-	
+
+	private String url;
+
 	@NotNull(message = "A categoria não pode ser nula")
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_categoria", nullable = false)
-	@ApiModelProperty(value="Identificador único da categoria", required = true)
+	@ApiModelProperty(value = "Identificador único da categoria", required = true)
 	private Categoria categoria;
 
 	public Long getId() {
@@ -112,6 +116,14 @@ public class Produto {
 		this.categoria = categoria;
 	}
 
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(descricao, id);
@@ -125,11 +137,8 @@ public class Produto {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Produto other = (Produto) obj;
+		ProdutoDto other = (ProdutoDto) obj;
 		return Objects.equals(descricao, other.descricao) && Objects.equals(id, other.id);
 	}
-	
-	
-	
-}
 
+}

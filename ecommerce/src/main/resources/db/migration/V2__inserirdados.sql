@@ -2,9 +2,9 @@ INSERT INTO public.categoria (nome,descricao) VALUES
 	 ('Alimentos','Comidas e bebidas'),
 	 ('Limpeza','Produtos de limpeza em geral');
 
-INSERT INTO public.produto (nome,descricao,qtd_estoque,data_cadastro,valor_unitario,imagem,id_categoria) VALUES
-	 ('Arroz','Arroz Integral 5kg',100,'2022-10-20',20.99,NULL,2),
-	 ('Detergente','Detergente Ypê',25,'2022-01-01',5.4,NULL,1);
+INSERT INTO public.produto (nome,descricao,qtd_estoque,data_cadastro,valor_unitario,id_categoria) VALUES
+	 ('Arroz','Arroz Integral 5kg',100,'2022-10-20',20.99,2),
+	 ('Detergente','Detergente Ypê',25,'2022-01-01',5.4,1);
 
 
 INSERT INTO public.endereco (cep,logradouro,bairro,localidade,numero,complemento,uf) VALUES

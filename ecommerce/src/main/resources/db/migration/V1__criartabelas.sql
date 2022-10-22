@@ -11,8 +11,15 @@ descricao varchar(200),
 qtd_estoque int,
 data_cadastro date,
 valor_unitario REAL not null,
-imagem bytea,
 id_categoria int NOT NULL REFERENCES categoria(id_categoria)
+);
+
+create table imagem (
+id_foto serial primary key,
+dados bytea,
+tipo varchar(100),
+nome varchar(100),
+id_produto int NOT NULL REFERENCES produto(id_produto)
 );
 
 CREATE TABLE endereco (
