@@ -56,7 +56,7 @@ public class PedidoService {
 			itemPedido.setQuantidade(pedidoItemInserirDto.getQuantidade());
 			itemPedido.setPercentualDesconto(pedidoItemInserirDto.getPercentualDesconto());
 			
-			Optional<Produto> produto = produtoRepository.findById(itemPedido.getProduto().getId());
+			Optional<Produto> produto = produtoRepository.findById(pedidoItemInserirDto.getProduto().getId());
 			itemPedido.setProduto(produto.get());
 			
 			itemPedido.setPrecoVenda(produto.get().getValorUnitario());

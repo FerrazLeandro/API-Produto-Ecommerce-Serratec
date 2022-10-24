@@ -19,44 +19,31 @@ import org.br.serratec.domain.Categoria;
 
 import io.swagger.annotations.ApiModelProperty;
 
-@Entity
-@Table(name = "produto")
 public class ProdutoDto {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_produto")
-	@ApiModelProperty(value = "Identificador único do prodto")
+
+	@ApiModelProperty(value = "Identificador único do produto")
 	private Long id;
 
-	@NotNull
-	@NotBlank
-	@Column(name = "nome", length = 30, unique = true)
 	@ApiModelProperty(value = "Nome do produto", required = true)
 	private String nome;
 
-	@NotNull
-	@Column(name = "descricao", length = 200)
+
 	@ApiModelProperty(value = "Descrição do produto")
 	private String descricao;
 
-	@Column(name = "qtd_estoque")
+
 	@ApiModelProperty(value = "Quantidade em estoque do produto")
 	private Integer qtdEstoque;
 
-	@Column(name = "data_cadastro")
+
 	@ApiModelProperty(value = "Data de cadastro do prodto")
 	private LocalDate dataCadastro;
 
-	@NotNull
-	@Column(name = "valor_unitario")
+
 	@ApiModelProperty(value = "Valor unitário do produto", required = true)
 	private Double valorUnitario;
 
-	private String url;
 
-	@NotNull(message = "A categoria não pode ser nula")
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_categoria", nullable = false)
 	@ApiModelProperty(value = "Identificador único da categoria", required = true)
 	private Categoria categoria;
 
@@ -114,14 +101,6 @@ public class ProdutoDto {
 
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
-	}
-
-	public String getUrl() {
-		return url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
 	}
 
 	@Override

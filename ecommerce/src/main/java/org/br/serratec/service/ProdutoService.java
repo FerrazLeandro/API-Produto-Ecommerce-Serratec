@@ -54,13 +54,13 @@ public class ProdutoService {
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}/imagem")
 				.buildAndExpand(produto.getId()).toUri();
 		ProdutoDto pro = new ProdutoDto();
+		pro.setId(produto.getId());
 		pro.setNome(produto.getNome());
 		pro.setDescricao(produto.getDescricao());
 		pro.setQtdEstoque(produto.getQtdEstoque());
 		pro.setDataCadastro(produto.getDataCadastro());
 		pro.setValorUnitario(produto.getValorUnitario());
 		pro.setCategoria(produto.getCategoria());
-		pro.setUrl(uri.toString());
 
 		// TODO Colocar o email do usuário
 		mailConfig.sendMail("leandro_ferraz@outlook.com", "Ecommerce - Produto cadastrado com sucesso!",

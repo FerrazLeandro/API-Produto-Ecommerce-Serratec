@@ -26,13 +26,11 @@ public class Produto {
 	@ApiModelProperty(value="Identificador único do prodto")
 	private Long id;
 	
-	@NotNull
 	@NotBlank
 	@Column(name = "nome", length = 30, unique = true)
 	@ApiModelProperty(value="Nome do produto", required = true)
 	private String nome;
 	
-	@NotNull
 	@Column(name = "descricao", length = 200)
 	@ApiModelProperty(value="Descrição do produto")
 	private String descricao;

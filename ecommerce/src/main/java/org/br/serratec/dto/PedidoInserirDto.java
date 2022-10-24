@@ -14,17 +14,17 @@ import io.swagger.annotations.ApiModelProperty;
 
 public class PedidoInserirDto {
 	
-	@NotBlank(message= "A data do pedido não pode ser em branco")
+
 	@NotNull(message= "A data do pedido não pode ser nula")
 	@ApiModelProperty(value="Data do pedido", required = true)
 	private LocalDate dataPedido;
 	
-	@NotBlank(message= "A data da entrega não pode ser em branco")
+
 	@NotNull(message= "A data da entrega não pode ser nula")
 	@ApiModelProperty(value="Data de entrega")
 	private LocalDate dataEntrega;
 	
-	@NotBlank(message= "A data do p não pode ser em branco")
+
 	@NotNull(message= "A data do envio não pode ser nula")
 	@ApiModelProperty(value="Data do pedido")
 	private LocalDate dataEnvio;

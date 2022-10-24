@@ -38,8 +38,8 @@ public class ConfigSeguranca extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeHttpRequests()
 				.antMatchers("/").permitAll()
-				.antMatchers(HttpMethod.GET, "/funcionarios").permitAll()
-				.antMatchers(HttpMethod.GET, "/usuarios").hasAnyAuthority("ADMIN", "USER")
+				.antMatchers(HttpMethod.GET, "/api").permitAll()
+				.antMatchers(HttpMethod.GET, "/usuarios").hasAnyAuthority("ADMIN")
 				.antMatchers(HttpMethod.POST, "/usuarios", "/funcionarios")
 				.hasAuthority("ADMIN").anyRequest().authenticated()
 				.and()

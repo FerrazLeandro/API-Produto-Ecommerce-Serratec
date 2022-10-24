@@ -22,51 +22,47 @@ import io.swagger.annotations.ApiModelProperty;
 @Table(name = "pedido")
 public class Pedido {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_pedido")
-	@ApiModelProperty(value="Identificador único do pedido")
+	@ApiModelProperty(value = "Identificador único do pedido")
 	private Long id;
-	
-	@NotBlank(message= "A data do pedido não pode ser em branco")
-	@NotNull(message= "A data do pedido não pode ser nula")
+
+	@NotNull(message = "A data do pedido não pode ser nula")
 	@Column(name = "data_pedido")
-	@ApiModelProperty(value="Data do pedido", required = true)
+	@ApiModelProperty(value = "Data do pedido", required = true)
 	private LocalDate dataPedido;
-	
-	@NotBlank(message= "A data da entrega não pode ser em branco")
-	@NotNull(message= "A data da entrega não pode ser nula")
+
+	@NotNull(message = "A data da entrega não pode ser nula")
 	@Column(name = "data_entrega")
-	@ApiModelProperty(value="Data de entrega")
+	@ApiModelProperty(value = "Data de entrega")
 	private LocalDate dataEntrega;
-	
-	@NotBlank(message= "A data do p não pode ser em branco")
-	@NotNull(message= "A data do envio não pode ser nula")
+
+	@NotNull(message = "A data do envio não pode ser nula")
 	@Column(name = "data_envio")
-	@ApiModelProperty(value="Data do envio do pedido")
+	@ApiModelProperty(value = "Data do envio do pedido")
 	private LocalDate dataEnvio;
-	
-	@NotBlank(message= "O status não pode ser em branco")
-	@NotNull(message= "O status pedido não pode ser nula")
+
+	@NotBlank(message = "O status não pode ser em branco")
+	@NotNull(message = "O status pedido não pode ser nula")
 	@Column(name = "status", length = 1)
 	private String status;
-	
-	@NotBlank(message= "A valor total pedido não pode ser em branco")
-	@NotNull(message= "A valor total não pode ser nulo")
+
+	@NotNull(message = "A valor total não pode ser nulo")
 	@Column(name = "valor_total")
-	@ApiModelProperty(value="Valor total do pedido", required = true)
+	@ApiModelProperty(value = "Valor total do pedido", required = true)
 	private Double valorTotal;
-	
+
 	@NotNull(message = "O cliente não pode ser nulo")
 	@JoinColumn(name = "id_cliente", nullable = false)
 	@ManyToOne(fetch = FetchType.EAGER)
-	@ApiModelProperty(value="Identificado único do cliente")
+	@ApiModelProperty(value = "Identificado único do cliente")
 	private Cliente cliente;
-
 
 	@Override
 	public String toString() {
-		return "Pedido: " + id + "\nData do Pedido: " + dataPedido + "\nData da Entrega: " + dataEntrega + "\nData do Envio: "
-				+ dataEnvio + "\nStatus: " + status + "\nValor Total: " + valorTotal + "\nCliente: " + cliente;
+		return "Pedido: " + id + "\nData do Pedido: " + dataPedido + "\nData da Entrega: " + dataEntrega
+				+ "\nData do Envio: " + dataEnvio + "\nStatus: " + status + "\nValor Total: " + valorTotal
+				+ "\nCliente: " + cliente;
 	}
 
 	public Long getId() {
@@ -124,6 +120,5 @@ public class Pedido {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-	
-	
+
 }
