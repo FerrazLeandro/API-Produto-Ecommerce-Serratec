@@ -16,39 +16,47 @@ import javax.validation.constraints.NotNull;
 @Table(name = "item_pedido")
 public class ItemPedido {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_item_pedido")
 	private Long id;
-	
-	@NotNull(message= "A quantidade não pode ser nula")
+
+	@NotNull(message = "A quantidade não pode ser nula")
 	@Column(name = "quantidade")
 	private Integer quantidade;
-	
-	@NotNull(message= "O preço de venda não pode ser nulo")
+
+	@NotNull(message = "O preço de venda não pode ser nulo")
 	@Column(name = "preco_venda")
 	private Double precoVenda;
-	
-	@NotNull(message= "A percentual de desconto não pode ser nulo")
+
+	@NotNull(message = "A percentual de desconto não pode ser nulo")
 	@Column(name = "percentual_desconto")
 	private Double percentualDesconto;
-	
-	@NotNull(message= "O valor bruto quantidade não pode ser nulo")
+
+	@NotNull(message = "O valor bruto quantidade não pode ser nulo")
 	@Column(name = "valor_bruto")
 	private Double valorBruto;
-	
-	@NotNull(message= "O Valor líquido não pode ser nulo")
+
+	@NotNull(message = "O Valor líquido não pode ser nulo")
 	@Column(name = "valor_liquido")
 	private Double valorliquido;
-	
-	@NotNull(message= "O id do produto não pode ser nulo")
+
+	@NotNull(message = "O id do produto não pode ser nulo")
 	@JoinColumn(name = "id_produto", nullable = false)
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Produto produto;
-	
-	@NotNull(message= "O id do pedido não pode ser nulo")
+
+	@NotNull(message = "O id do pedido não pode ser nulo")
 	@JoinColumn(name = "id_pedido", nullable = false)
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Pedido pedido;
+
+	@Override
+	public String toString() {
+		return "Produtos:\nId: " + produto.getId() + "\nNome: " + produto.getNome() + "\nPreço de Venda: " + precoVenda
+				+ "\nQuantidade: " + quantidade + "\nValor Bruto: " + valorBruto + "\nPercentual de Desconto: "
+				+ percentualDesconto + "\nValor Liquido: " + valorliquido;
+
+	}
 
 	public Long getId() {
 		return id;
@@ -113,7 +121,5 @@ public class ItemPedido {
 	public void setPedido(Pedido pedido) {
 		this.pedido = pedido;
 	}
-	
-	
-	
+
 }

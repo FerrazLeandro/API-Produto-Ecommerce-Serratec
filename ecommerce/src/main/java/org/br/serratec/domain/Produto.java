@@ -54,6 +54,14 @@ public class Produto {
 	@ApiModelProperty(value="Identificador único da categoria", required = true)
 	private Categoria categoria;
 
+	
+	
+	@Override
+	public String toString() {
+		return "Produto Id: " + id + "\nNome:" + nome ;
+			
+	}
+
 	public Long getId() {
 		return id;
 	}

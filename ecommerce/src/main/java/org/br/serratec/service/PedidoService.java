@@ -26,8 +26,8 @@ public class PedidoService {
 	ProdutoRepository produtoRepository;
 
 	@Autowired
-	 MailConfig mailConfig;
-	
+	MailConfig mailConfig;
+
 	@Autowired
 	RelatorioPedidoService relatorioPedidoService;
 
@@ -72,14 +72,15 @@ public class PedidoService {
 
 			pedidoItens.add(itemPedido);
 			produtos.add(produto.get());
+
 		}
 
 		pedido.setValorTotal(valorTotal);
 
 		pedido = pedidoRepository.save(pedido);
-		
-		relatorioPedidoService.enviarEmail(pedido);
-		
+
+		relatorioPedidoService.enviarEmail(pedido,pedidoItens);
+
 		return pedido;
 
 	}
