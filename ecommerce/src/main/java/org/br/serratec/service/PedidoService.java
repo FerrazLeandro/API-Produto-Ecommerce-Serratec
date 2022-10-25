@@ -1,5 +1,7 @@
 package org.br.serratec.service;
 
+import java.time.LocalDate;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -41,7 +43,7 @@ public class PedidoService {
 
 	public Pedido salvar(PedidoInserirDto pedidoInserirDto) {
 		Pedido pedido = new Pedido();
-		pedido.setDataPedido(pedidoInserirDto.getDataPedido());
+		pedido.setDataPedido(LocalDate.now());
 		pedido.setDataEntrega(pedidoInserirDto.getDataEntrega());
 		pedido.setDataEnvio(pedidoInserirDto.getDataEnvio());
 		pedido.setStatus(pedidoInserirDto.getStatus());

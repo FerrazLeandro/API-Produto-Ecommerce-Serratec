@@ -13,39 +13,35 @@ import org.br.serratec.domain.Cliente;
 import io.swagger.annotations.ApiModelProperty;
 
 public class PedidoInserirDto {
-	
 
-	@NotNull(message= "A data do pedido não pode ser nula")
-	@ApiModelProperty(value="Data do pedido")
+	@NotNull(message = "A data do pedido não pode ser nula")
+	@ApiModelProperty(value = "Data do pedido")
 	private LocalDate dataPedido;
-	
 
-	@NotNull(message= "A data da entrega não pode ser nula")
-	@ApiModelProperty(value="Data de entrega")
+	@NotNull(message = "A data da entrega não pode ser nula")
+	@ApiModelProperty(value = "Data de entrega")
 	private LocalDate dataEntrega;
-	
 
-	@NotNull(message= "A data do envio não pode ser nula")
-	@ApiModelProperty(value="Data de envio do pedido")
+	@NotNull(message = "A data do envio não pode ser nula")
+	@ApiModelProperty(value = "Data de envio do pedido")
 	private LocalDate dataEnvio;
-	
-	@NotBlank(message= "O status não pode ser em branco")
-	@NotNull(message= "O status pedido não pode ser nula")
+
+	@NotBlank(message = "O status não pode ser em branco")
+	@NotNull(message = "O status pedido não pode ser nula")
 	private String status;
-	
-	@NotNull(message= "O cliente não pode ser nulo")
-	@ApiModelProperty(value="Identificado único do cliente")
+
+	@NotNull(message = "O cliente não pode ser nulo")
+	@ApiModelProperty(value = "Identificado único do cliente")
 	@ManyToOne
 	@JoinColumn(name = "id_cliente")
 	private Cliente cliente;
-	
-	@NotNull(message= "O item pedido não pode ser nulo")
+
+	@NotNull(message = "O item pedido não pode ser nulo")
 	private List<PedidoItemInserirDto> pedidoItemInserirDto;
-	
+
 	public PedidoInserirDto() {
 	}
-	
-	
+
 	public List<PedidoItemInserirDto> getPedidoItemInserirDto() {
 		return pedidoItemInserirDto;
 	}
@@ -53,7 +49,6 @@ public class PedidoInserirDto {
 	public void setPedidoItemInserirDto(List<PedidoItemInserirDto> pedidoItemInserirDto) {
 		this.pedidoItemInserirDto = pedidoItemInserirDto;
 	}
-
 
 	public void setDataPedido(LocalDate dataPedido) {
 		this.dataPedido = dataPedido;
@@ -95,9 +90,4 @@ public class PedidoInserirDto {
 		return cliente;
 	}
 
-
-	
-	
-	
-	
 }
