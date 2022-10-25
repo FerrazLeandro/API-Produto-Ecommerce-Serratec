@@ -23,7 +23,7 @@ public class Produto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	
 	@Column(name = "id_produto")
-	@ApiModelProperty(value="Identificador único do prodto")
+	@ApiModelProperty(value="Identificador único do produto")
 	private Long id;
 	
 	@NotBlank

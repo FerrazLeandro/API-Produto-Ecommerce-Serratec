@@ -6,7 +6,7 @@ descricao varchar(200)
 
 CREATE TABLE produto (
 id_produto serial primary key,
-nome varchar(30) NOT NULL unique,
+nome varchar(50) NOT NULL unique,
 descricao varchar(200),
 qtd_estoque int,
 data_cadastro date,

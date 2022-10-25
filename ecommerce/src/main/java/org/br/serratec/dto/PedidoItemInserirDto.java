@@ -4,12 +4,16 @@ import javax.validation.constraints.NotNull;
 
 import org.br.serratec.domain.Produto;
 
+import io.swagger.annotations.ApiModelProperty;
+
 public class PedidoItemInserirDto {
 	
 	@NotNull(message= "A quantidade não pode ser nula")
+	@ApiModelProperty(value="Quantidade item pedido")
 	private Integer quantidade;
 	
 	@NotNull(message= "A percentual não pode ser nula")
+	@ApiModelProperty(value="Percentual de desconto do pedido")
 	private Double percentualDesconto;
 	
 	@NotNull(message= "O Produto não pode ser nula")

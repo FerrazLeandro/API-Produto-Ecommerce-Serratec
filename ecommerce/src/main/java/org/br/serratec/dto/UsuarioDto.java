@@ -7,11 +7,17 @@ import org.br.serratec.domain.Perfil;
 import org.br.serratec.domain.Usuario;
 import org.br.serratec.domain.UsuarioPerfil;
 
+import io.swagger.annotations.ApiModelProperty;
+
 
 public class UsuarioDto {
+	@ApiModelProperty(value="Identificador único do usuário")
     private Long id;
+	@ApiModelProperty(value="Nome do usuário")
     private String nome;
+	@ApiModelProperty(value="E-mail do usuário")
     private String email;
+	@ApiModelProperty(value="Perfis do usuário")
     private Set<Perfil> perfis;
 
     public UsuarioDto(Long id, String nome, String email) {

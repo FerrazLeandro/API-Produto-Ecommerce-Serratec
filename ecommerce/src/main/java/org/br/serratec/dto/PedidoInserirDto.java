@@ -16,7 +16,7 @@ public class PedidoInserirDto {
 	
 
 	@NotNull(message= "A data do pedido não pode ser nula")
-	@ApiModelProperty(value="Data do pedido", required = true)
+	@ApiModelProperty(value="Data do pedido")
 	private LocalDate dataPedido;
 	
 
@@ -26,7 +26,7 @@ public class PedidoInserirDto {
 	
 
 	@NotNull(message= "A data do envio não pode ser nula")
-	@ApiModelProperty(value="Data do pedido")
+	@ApiModelProperty(value="Data de envio do pedido")
 	private LocalDate dataEnvio;
 	
 	@NotBlank(message= "O status não pode ser em branco")

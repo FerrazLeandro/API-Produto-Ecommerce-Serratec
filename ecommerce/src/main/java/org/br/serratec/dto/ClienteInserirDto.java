@@ -2,14 +2,24 @@ package org.br.serratec.dto;
 
 import java.time.LocalDate;
 
+import io.swagger.annotations.ApiModelProperty;
+
 public class ClienteInserirDto {
+	@ApiModelProperty(value="Identificador único do cliente")
 	private Long id;
+	@ApiModelProperty(value="Nome completo do cliente")
 	private String nomeCompleto;
+	@ApiModelProperty(value="E-mail do cliente")
 	private String email;
+	@ApiModelProperty(value="CPF do cliente")
 	private String cpf;
+	@ApiModelProperty(value="Telefone do cliente")
 	private String telefone;
+	@ApiModelProperty(value="Data de nascimento do cliente")
 	private LocalDate dataNascimento;
+	@ApiModelProperty(value="CEP do cliente")
 	private String cep;
+	@ApiModelProperty(value="Número do endereço do cliente")
 	private String numero;
 	
 	public ClienteInserirDto() {
