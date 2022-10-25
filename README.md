@@ -85,3 +85,17 @@ e-mail;
 - DBeaver
 - Postresql
 
+<br><br>
+
+## Professor responsável:
+| [<img src="https://avatars.githubusercontent.com/u/6456100?v=4" width=115><br><sub>Luis Henrique 'Bulinha'</sub>](https://github.com/bulinha) |
+ | :---: |
+
+ 
+<br>
+
+## Equipe do trabalho:
+### Grupo 5 | Turma 8 - Teresópolis
+
+| [<img src="https://avatars.githubusercontent.com/u/85909017?v=4" width=115><br><sub>Leandro Ferraz</sub>](https://github.com/FerrazLeandro) |  [<img src="https://avatars.githubusercontent.com/u/102622495?v=4" width=115><br><sub>Erick Ramos</sub>](https://github.com/ErickNotFound) |  [<img src="https://avatars.githubusercontent.com/u/96076314?v=4" width=115><br><sub>Alessandra Pinheiro</sub>](https://github.com/Ale-ssandra) |  [<img src="https://avatars.githubusercontent.com/u/110869576?v=4" width=115><br><sub>Tiago Souza</sub>](https://github.com/TiagoSouzacf) |  [<img src="https://avatars.githubusercontent.com/u/110734237?v=4" width=115><br><sub>Fábio Gurgel</sub>](https://github.com/Fabio-Gurgel) | 
+| :---: | :---: | :---: | :---: | :---: |
