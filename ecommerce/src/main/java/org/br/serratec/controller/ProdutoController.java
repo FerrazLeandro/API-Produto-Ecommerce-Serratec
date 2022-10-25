@@ -80,6 +80,13 @@ public class ProdutoController {
 	}
 	
 	@GetMapping("/{id}/imagem")
+	@ApiOperation(value = "Retorna a imagem de um produto", notes = "Imagem")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Retorna uma imagem"),
+			@ApiResponse(code = 401, message = "Erro de autenticação"),
+			@ApiResponse(code = 403, message = "Não há permissão para acessar o recurso"),
+			@ApiResponse(code = 404, message = "Recurso não encontrado"),
+			@ApiResponse(code = 505, message = "Exceção interna da aplicação"), })
+	
 	public ResponseEntity<byte[]> buscarImagem(@PathVariable Long id) {
 	Imagem imagem = imagemService.buscarPorIdProduto(id);
 	HttpHeaders headers = new HttpHeaders();

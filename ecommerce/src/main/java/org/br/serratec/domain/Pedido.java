@@ -44,6 +44,7 @@ public class Pedido {
 	@NotBlank(message = "O status não pode ser em branco")
 	@NotNull(message = "O status pedido não pode ser nula")
 	@Column(name = "status", length = 1)
+	@ApiModelProperty(value="Status do pedido")
 	private String status;
 
 	@NotNull(message = "A valor total não pode ser nulo")

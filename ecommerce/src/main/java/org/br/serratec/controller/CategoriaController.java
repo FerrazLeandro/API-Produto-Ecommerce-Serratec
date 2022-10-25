@@ -47,7 +47,7 @@ public class CategoriaController {
 	}
 
 	@GetMapping("/{id}")
-	@ApiOperation(value = "Retorna uma categoria", notes = "Categoria")
+	@ApiOperation(value = "Retorna uma categoria pelo id", notes = "Categoria")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Retorna uma categoria"),
 	@ApiResponse(code = 401, message = "Erro de autenticação"),
 	@ApiResponse(code = 403, message = "Não há permissão para acessar o recurso"),
@@ -80,7 +80,7 @@ public class CategoriaController {
 	}
 
 	@PutMapping("/{id}")
-	@ApiOperation(value="Atualiza dados de uma categoria", notes="Atualizar Categoria")
+	@ApiOperation(value="Atualiza dados de uma categoria pelo id", notes="Atualizar Categoria")
 	@ApiResponses(value= {
 	@ApiResponse(code=200, message="Categoria atualizada"),
 	@ApiResponse(code=401, message="Erro de autenticação"),
@@ -99,7 +99,7 @@ public class CategoriaController {
 	}
 
 	@DeleteMapping("/{id}")
-	@ApiOperation(value="Remove uma categoria", notes="Remover Categoria")
+	@ApiOperation(value="Remove uma categoria pelo id", notes="Remover Categoria")
 	@ApiResponses(value= {
 	@ApiResponse(code=200, message="Categoria removida"),
 	@ApiResponse(code=204, message="Sem conteúdo"),

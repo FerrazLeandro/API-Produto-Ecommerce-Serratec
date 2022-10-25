@@ -34,7 +34,7 @@ public class PedidoDto {
 	private String status;
 	
 	@NotNull
-	@ApiModelProperty(value="Identificado único do cliente")
+	@ApiModelProperty(value="Identificador único do cliente")
 	private Cliente cliente;
 	
 	@NotNull
