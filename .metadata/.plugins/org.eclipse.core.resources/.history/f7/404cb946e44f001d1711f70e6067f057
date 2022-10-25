@@ -1,8 +1,0 @@
-package org.br.serratec.repository;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-
-@Repos
-public interface CategoriaRepository extends JpaRepository<Categoria, Long> {
-
-}

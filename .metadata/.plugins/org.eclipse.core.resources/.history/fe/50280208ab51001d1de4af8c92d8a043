@@ -1,6 +1,0 @@
-package org.br.serratec.dto;
-
-public class PedidoIteminserirDto {
-	private Integer quantidade
-	
-}

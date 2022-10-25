@@ -1,8 +1,0 @@
-package org.br.serratec.repository;
-
-import org.br.serratec.dto.ClienteDto;
-import org.springframework.data.jpa.repository.JpaRepository;
-
-public interface ClienteDtoRepository extends JpaRepository<ClienteDto, Long> {
-
-}

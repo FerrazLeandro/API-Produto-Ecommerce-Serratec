@@ -1,67 +1,42 @@
 package org.br.serratec.controller;
 
+import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 
-import org.br.serratec.domain.Usuario;
-import org.br.serratec.repository.UsuarioRepository;
+import org.br.serratec.dto.UsuarioDto;
+import org.br.serratec.dto.UsuarioInserirDto;
+import org.br.serratec.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
 
 @RestController
-@RequestMapping("/usuario")
+@RequestMapping("/api/usuario")
 public class UsuarioController {
-
+	
 	@Autowired
-	private UsuarioRepository usuarioRepository;
+	UsuarioService usuarioService;
+	
+   @GetMapping
+   public ResponseEntity<List<UsuarioDto>> listar(){
+	   return ResponseEntity.ok(usuarioService.lista());
+   }
 
-	@GetMapping
-	public List<Usuario> listar() {
-		return usuarioRepository.findAll();
-	}
-
-	@GetMapping("/{id}")
-	public ResponseEntity<Usuario> buscarId(@PathVariable Integer id) {
-		Optional<Usuario> veiculo = usuarioRepository.findById(id);
-		if (veiculo.isPresent()) {
-			return ResponseEntity.ok(veiculo.get());
-		} else {
-			return ResponseEntity.notFound().build();
-		}
-	}
-
-	@PostMapping
-	@ResponseStatus(HttpStatus.CREATED)
-	public Usuario inserir(@RequestBody Usuario usuario) {
-		return usuarioRepository.save(usuario);
-	}
-
-	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> excluir(@PathVariable Integer id) {
-		if (usuarioRepository.existsById(id)) {
-			usuarioRepository.deleteById(id);
-			return ResponseEntity.noContent().build();
-		}
-		return ResponseEntity.notFound().build();
-	}
-
-	@PutMapping("/{id}")
-	public ResponseEntity<Usuario> atualizar(@RequestBody Usuario usuario, @PathVariable Integer id) {
-		if (!usuarioRepository.existsById(id)) {
-			return ResponseEntity.notFound().build();
-		}
-		usuario = usuarioRepository.save(usuario);
-		return ResponseEntity.ok(usuario);
-	}
+   @PostMapping
+   public ResponseEntity<UsuarioDto> inserir(@RequestBody UsuarioInserirDto usuarioInserirDto) {
+       UsuarioDto usuario = usuarioService.inserir(usuarioInserirDto);
+       URI uri = ServletUriComponentsBuilder
+           .fromCurrentRequest()
+           .path("/{id}")
+           .buildAndExpand(usuario.getId())
+           .toUri();
+       return ResponseEntity.created(uri).body(usuario);
+   }
 
 }

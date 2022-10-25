@@ -24,5 +24,22 @@ INSERT INTO public.pedido (data_pedido,data_entrega,data_envio,status,valor_tota
 INSERT INTO public.item_pedido (quantidade,preco_venda,percentual_desconto,valor_bruto,valor_liquido,id_produto,id_pedido) VALUES
 	 (2,20.99,0.0,42.2,42.0,1,1),
 	 (1,5.4,10.0,5.1,5.0,2,2);
+	
+
+INSERT INTO usuario (nome, email, senha) VALUES
+('Joao da Silva', 'joao@email.com', '$2a$12$sPPV9up/RlaZGUBA1AU7ju66f4o.eNSGhhCaWUdr4rnvDZ.QjaMtK'),
+('Andre das coves', 'andre@email.com', '$2a$12$G7ibc/sJRL0BWCpVCBcRxudHZ2aV8uHbMhHbu/Y6Zpz3Dw1X4.B2S');
+
+INSERT INTO perfil (nome) VALUES
+('ADMIN'),
+('USER');
+
+INSERT INTO usuario_perfil (id_usuario, id_perfil) VALUES
+( (SELECT id FROM usuario WHERE email='joao@email.com'),
+  (SELECT id_perfil FROM perfil WHERE nome='ADMIN') ),
+( (SELECT id FROM usuario WHERE email='joao@email.com'),
+  (SELECT id_perfil FROM perfil WHERE nome='USER') ),
+( (SELECT id FROM usuario WHERE email='andre@email.com'),
+  (SELECT id_perfil FROM perfil WHERE nome='USER') );
 
 	
