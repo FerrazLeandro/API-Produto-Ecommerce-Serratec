@@ -9,9 +9,9 @@ import org.br.serratec.security.UsuarioDetalheService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -37,23 +37,26 @@ public class ConfigSeguranca extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeHttpRequests()
-				.antMatchers("/").permitAll()
-				.antMatchers(HttpMethod.GET, "/swagger-ui/index.html").permitAll()
-				.antMatchers("/api/**").authenticated()
-				.antMatchers("/api/usuario/").hasAuthority("ADMIN")
-				.anyRequest().authenticated()
-				.and()
-				.httpBasic()
-				.and()
-				.cors()
-				.and()
-				.csrf().disable()
-				.sessionManagement()
-				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+			.antMatchers("/", "/swagger-ui/**").permitAll()
+			.antMatchers("/api/**").authenticated()
+			.antMatchers("/api/usuario/").hasAuthority("ADMIN")
+			.anyRequest()
+			.authenticated()
+			.and()
+			.httpBasic()
+			.and()
+			.cors().and().csrf().disable().sessionManagement()
+			.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		http.addFilter(new JwtAuthenticationFilter(this.authenticationManager(), jwtUtil));
 		http.addFilter(new JwtAuthorizationFilter(this.authenticationManager(), jwtUtil, usuarioDetalheService));
 
 	}
+
+//	@Override
+//	public void configure(WebSecurity web) throws Exception {
+//		web.ignoring().antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources/", "/configuration/",
+//				"/swagger-ui.html", "/webjars/**");
+//	}
 
 	@Bean
 	public CorsConfigurationSource corsConfigurationSource() {

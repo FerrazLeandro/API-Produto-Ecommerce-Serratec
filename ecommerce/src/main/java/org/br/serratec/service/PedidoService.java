@@ -1,7 +1,6 @@
 package org.br.serratec.service;
 
 import java.time.LocalDate;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -13,6 +12,7 @@ import org.br.serratec.domain.Produto;
 import org.br.serratec.dto.PedidoDto;
 import org.br.serratec.dto.PedidoInserirDto;
 import org.br.serratec.dto.PedidoItemInserirDto;
+import org.br.serratec.repository.ClienteRepository;
 import org.br.serratec.repository.PedidoRepository;
 import org.br.serratec.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +27,9 @@ public class PedidoService {
 	@Autowired
 	ProdutoRepository produtoRepository;
 
+	@Autowired
+	ClienteRepository clienteRepository;
+	
 	@Autowired
 	MailConfig mailConfig;
 
@@ -47,8 +50,9 @@ public class PedidoService {
 		pedido.setDataEntrega(pedidoInserirDto.getDataEntrega());
 		pedido.setDataEnvio(pedidoInserirDto.getDataEnvio());
 		pedido.setStatus(pedidoInserirDto.getStatus());
-		pedido.setCliente(pedidoInserirDto.getCliente());
-
+		pedido.setCliente(clienteRepository.findById(pedidoInserirDto.getCliente().getId()).get());
+		System.out.println(pedidoInserirDto.getCliente());
+		
 		List<ItemPedido> pedidoItens = new ArrayList<>();
 		List<Produto> produtos = new ArrayList<>();
 		Double valorTotal = 0.;
@@ -81,7 +85,7 @@ public class PedidoService {
 
 		pedido = pedidoRepository.save(pedido);
 
-		relatorioPedidoService.enviarEmail(pedido,pedidoItens);
+		relatorioPedidoService.enviarEmail(pedido, pedidoItens);
 
 		return pedido;
 

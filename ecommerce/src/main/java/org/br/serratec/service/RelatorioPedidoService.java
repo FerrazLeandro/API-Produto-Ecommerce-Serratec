@@ -3,6 +3,7 @@ package org.br.serratec.service;
 import java.util.List;
 
 import org.br.serratec.config.MailConfig;
+import org.br.serratec.domain.Cliente;
 import org.br.serratec.domain.ItemPedido;
 import org.br.serratec.domain.Pedido;
 import org.br.serratec.dto.RelatorioPedidoDto;
@@ -29,7 +30,8 @@ public class RelatorioPedidoService {
 	relatorio.setDataPedido(pedido.getDataPedido());
 	relatorio.setItemPedido(itemPedido);
 	relatorio.setValorTotal(pedido.getValorTotal());
-		mailConfig.sendMail("leandro_ferraz@outlook.com", "Ecommerce - Pedido cadastrado com sucesso!",
+	System.out.println(pedido.getCliente().getEmail());
+		mailConfig.sendMail(pedido.getCliente().getEmail(), "Ecommerce - Pedido cadastrado com sucesso!",
 				relatorio.toString());
 
 	}

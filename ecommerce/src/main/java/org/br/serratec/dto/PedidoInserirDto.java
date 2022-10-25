@@ -34,8 +34,6 @@ public class PedidoInserirDto {
 	
 	@NotNull(message= "O cliente não pode ser nulo")
 	@ApiModelProperty(value="Identificado único do cliente")
-	@ManyToOne
-	@JoinColumn(name = "id_cliente")
 	private Cliente cliente;
 	
 	@NotNull(message= "O item pedido não pode ser nulo")
@@ -43,8 +41,7 @@ public class PedidoInserirDto {
 	
 	public PedidoInserirDto() {
 	}
-	
-	
+
 	public List<PedidoItemInserirDto> getPedidoItemInserirDto() {
 		return pedidoItemInserirDto;
 	}

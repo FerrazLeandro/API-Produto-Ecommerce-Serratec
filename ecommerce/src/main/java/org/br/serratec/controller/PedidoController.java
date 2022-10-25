@@ -35,9 +35,6 @@ public class PedidoController {
 	PedidoRepository pedidoRepository;
 
 	@Autowired
-	private MailConfig mailConfig;
-
-	@Autowired
 	PedidoService pedidoService;
 
 	@GetMapping
