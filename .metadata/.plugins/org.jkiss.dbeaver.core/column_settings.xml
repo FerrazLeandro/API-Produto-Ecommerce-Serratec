@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <items>
+	<item id="NodeList/PostgreSchema">
+		<column name="Nome" visible="true" order="0" width="100"/>
+		<column name="Comentario" visible="true" order="1" width="140"/>
+	</item>
 	<item id="NodeList/PostgreTableColumn">
 		<column name="Nome da coluna" visible="true" order="0" width="102"/>
 		<column name="#" visible="true" order="1" width="100"/>

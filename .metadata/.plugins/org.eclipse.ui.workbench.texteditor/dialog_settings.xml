@@ -6,8 +6,10 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="PedidoInserirDto"/>
+		<item key="selection" value="UsuarioDto"/>
 		<list key="findhistory">
+			<item value="UsuarioDTO"/>
+			<item value="UsuarioInserirDTO"/>
 			<item value="ClienteDto"/>
 			<item value="cliente"/>
 			<item value="Cliente"/>
@@ -21,10 +23,10 @@
 			<item value="categoria"/>
 			<item value="categoriaRepository"/>
 			<item value="CategoriaRepository"/>
-			<item value="CategoriaController"/>
-			<item value="categotia"/>
 		</list>
 		<list key="replacehistory">
+			<item value="UsuarioDto"/>
+			<item value="UsuarioInserirDto"/>
 			<item value="PedidoInserirDto"/>
 			<item value="pedido"/>
 			<item value="Pedido"/>
@@ -38,8 +40,6 @@
 			<item value="PedidoRepository"/>
 			<item value="cliente"/>
 			<item value="Cliente"/>
-			<item value="enderecoRepository"/>
-			<item value="EnderecoRepository"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

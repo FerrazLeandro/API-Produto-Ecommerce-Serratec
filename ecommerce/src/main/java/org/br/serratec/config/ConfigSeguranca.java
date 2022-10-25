@@ -38,6 +38,7 @@ public class ConfigSeguranca extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeHttpRequests()
 				.antMatchers("/").permitAll()
+				.antMatchers(HttpMethod.GET, "/swagger-ui/index.html").permitAll()
 				.antMatchers("/api/**").authenticated()
 				.antMatchers("/api/usuario/").hasAuthority("ADMIN")
 				.anyRequest().authenticated()
