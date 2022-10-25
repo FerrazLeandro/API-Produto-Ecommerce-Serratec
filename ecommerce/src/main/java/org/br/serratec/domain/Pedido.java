@@ -27,7 +27,6 @@ public class Pedido {
 	@ApiModelProperty(value = "Identificador único do pedido")
 	private Long id;
 
-	@NotNull(message = "A data do pedido não pode ser nula")
 	@Column(name = "data_pedido")
 	@ApiModelProperty(value = "Data do pedido", required = true)
 	private LocalDate dataPedido;
@@ -58,13 +57,6 @@ public class Pedido {
 	@ApiModelProperty(value = "Identificado único do cliente")
 	private Cliente cliente;
 
-	@Override
-	public String toString() {
-		return "Pedido: " + id + "\nData do Pedido: " + dataPedido + "\nData da Entrega: " + dataEntrega
-				+ "\nData do Envio: " + dataEnvio + "\nStatus: " + status + "\nValor Total: " + valorTotal
-				+ "\nCliente: " + cliente;
-	}
-
 	public Long getId() {
 		return id;
 	}
@@ -78,7 +70,7 @@ public class Pedido {
 	}
 
 	public void setDataPedido(LocalDate dataPedido) {
-		this.dataPedido = dataPedido;
+		this.dataPedido = LocalDate.now();
 	}
 
 	public LocalDate getDataEntrega() {

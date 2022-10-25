@@ -15,7 +15,6 @@ import io.swagger.annotations.ApiModelProperty;
 public class PedidoInserirDto {
 	
 
-	@NotNull(message= "A data do pedido não pode ser nula")
 	@ApiModelProperty(value="Data do pedido", required = true)
 	private LocalDate dataPedido;
 	

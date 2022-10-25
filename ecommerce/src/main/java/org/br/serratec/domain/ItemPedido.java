@@ -52,9 +52,9 @@ public class ItemPedido {
 
 	@Override
 	public String toString() {
-		return "Produtos:\nId: " + produto.getId() + "\nNome: " + produto.getNome() + "\nPreço de Venda: " + precoVenda
-				+ "\nQuantidade: " + quantidade + "\nValor Bruto: " + valorBruto + "\nPercentual de Desconto: "
-				+ percentualDesconto + "\nValor Liquido: " + valorliquido;
+		return "Produtos:\nId: " + produto.getId() + "\nNome: " + produto.getNome() + "\nPreço de Venda: " + String.format("%.2f", precoVenda)
+				+ "\nQuantidade: " + quantidade + "\nValor Bruto: " + String.format("%.2f", valorBruto) + "\nPercentual de Desconto: "
+				+ percentualDesconto + "\nValor Liquido: " + String.format("%.2f", valorliquido);
 
 	}
 
