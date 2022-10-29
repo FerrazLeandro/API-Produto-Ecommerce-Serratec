@@ -1,0 +1,83 @@
+Login: http://localhost:8080/login
+
+{
+ "username":"leandro@email.com",
+ "password":"123456"
+}
+
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+Categoria: http://localhost:8080/api/categoria
+
+POST:
+
+{
+        "nome": "Eletrodomésticos",
+        "descricao": "Eletrodomésticos de Qualidade em Promoção"
+}
+
+
+
+PUT: (id: 5) (Atualizando descrição).
+
+{
+        "nome": "Jogos",
+        "descricao": "Jogos eletrônicos para todas as plataformas"
+}
+
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+Produto: http://localhost:8080/api/produto
+
+POST:
+
+PUT:
+
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+Pedido: http://localhost:8080/api/pedido
+
+POST:
+
+PUT:
+
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+Cliente: http://localhost:8080/api/cliente
+
+POST:
+
+{
+    "nomeCompleto": "Claiver Bootstraps da Silva",
+    "email": "claiver@test.com",
+    "cpf": "13099536008",
+    "telefone": "21986459812",
+    "dataNascimento": "1997-10-10",
+    "cep": "25963-025",
+    "numero": "25"
+}
+
+
+PUT: (id: 6) (Atualizando: nome, email, data de nascimento, número e complemento).
+
+{
+   "nomeCompleto": "Claiver Bootstraps da Silva Pinto",
+   "email": "claiver.claiver@test.com",
+   "cpf": "13099536008",
+   "telefone": "21965486544",
+   "dataNascimento": "1991-10-10",
+   "endereco": {
+       "id": 6,
+       "cep": "25963025",
+       "logradouro": "Avenida Feliciano Sodré",
+       "bairro": "Várzea",
+       "localidade": "Teresópolis",
+       "numero": "55",
+       "complemento": "Ao lado da Casa de Rações do Roberto",
+       "uf": "RJ"
+   }
+}
