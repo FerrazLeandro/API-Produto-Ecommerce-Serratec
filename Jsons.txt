@@ -1,8 +1,19 @@
 Login: http://localhost:8080/login
 
+
+ADMIN:
+
 {
  "username":"leandro@email.com",
  "password":"123456"
+}
+
+
+USER:
+
+{
+ "username":"claiver@email.com",
+ "password":"654321"
 }
 
 
@@ -80,4 +91,24 @@ PUT: (id: 6) (Atualizando: nome, email, data de nascimento, número e complement
        "complemento": "Ao lado da Casa de Rações do Roberto",
        "uf": "RJ"
    }
+}
+
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+Usuário: http://localhost:8080/api/usuario
+
+POST:
+
+{
+        "nome": "Bula Bulinha",
+        "email": "bula_bulinha@email.com",
+        "senha": "bulinha777",
+        "confirmaSenha": "bulinha777",
+        "perfis":[{
+            "id":1,
+            "tipo":"ADMIN" 
+        }  
+        ]
+
 }
