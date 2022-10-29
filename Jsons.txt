@@ -106,8 +106,7 @@ POST:
         "senha": "bulinha777",
         "confirmaSenha": "bulinha777",
         "perfis":[{
-            "id":1,
-            "tipo":"ADMIN" 
+            "id":3
         }  
         ]
 
