@@ -1,6 +1,6 @@
 # API RESTful
 ### Trabalho final da matéria:
-<img src="https://img.shields.io/badge/Versão-1.0.0-darkred"/> <img src="https://img.shields.io/badge/Data%20de%20lançamento:-00_de_Outubro-informational">
+<img src="https://img.shields.io/badge/Versão-1.0.0-darkred"/> <img src="https://img.shields.io/badge/Data%20de%20lançamento:-25_de_Outubro-informational">
 <img src="https://img.shields.io/badge/Última_Modificação:-25_de_Outubro-darkgreen"/>
 <br><br>
 
